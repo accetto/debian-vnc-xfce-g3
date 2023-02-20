@@ -1,0 +1,26 @@
+#!/bin/bash -e
+
+main() {
+    local result=""
+
+    case "$1" in
+
+        ### currently unused
+        
+        * )
+            echo "Exiting '${0}' with code '1' because of unknown key '${1}'"
+            return 1
+            ;;
+
+    esac
+
+    if [[ -n "${result}" ]] ; then
+
+        echo "${result}"
+    else
+        echo "Exiting '${0}' with code '1' because not able to get version of '$1'"
+        return 1
+    fi
+}
+
+main $@

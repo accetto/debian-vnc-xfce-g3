@@ -1,0 +1,99 @@
+#!/bin/bash -e
+
+echo -e "\n==> EXECUTING @$(date -u +'%Y-%m-%d_%H-%M-%S'): ${0} $@\n"
+
+declare _mydir=$(dirname $0)
+source "${_mydir}"/env.rc
+source "${_mydir}"/util.rc
+
+main() {
+    local params=$@
+    local now
+    local version_sticker
+    local cache_script="cache"
+    local -i exit_code=0
+    local target_stage
+
+    if [[ -f "${_build_context}/${_scrap_demand_stop_building}" ]] ; then
+    
+        echo "Skipping build on demand."
+        return 0
+    fi
+
+    ### refresh local cache for the case the 'pre_build' was not run
+    "${_mydir}/${cache_script}" "${_branch}" "${_blend}"
+    exit_code=$?
+    if [[ ${exit_code} -ne 0 ]] ; then die "Script '${cache_script}' failed with code ${exit_code}." ${exit_code} ; fi
+
+    ### get current version sticker
+    if [[ -f "${_build_context}/${_scrap_version_sticker_current}" ]] ; then
+
+        version_sticker="$( cat ${_build_context}/${_scrap_version_sticker_current} )"
+    else
+        version_sticker="null"
+    fi
+
+    ### check for the '--target' parameter
+    if [[ $# -gt 0 ]] ; then
+
+        ### no quotes around 'params'
+        for i in ${params} ; do
+            if [[ "${i}" == "--target" ]] ; then
+
+                target_stage="${i}"
+
+            elif [[ -n "${target_stage}" ]] ; then
+
+                ### only if '--target' is followed by a value
+                if [[ ! "${i}" =~ ^- ]] ; then
+                    target_stage="${i}"
+                fi
+                break
+            fi
+        done
+
+        ### remove the orphaned '--target' (missing value)
+        if [[ "${target_stage}" == "--target" ]] ; then
+            params="${params/--target/}"
+            target_stage=""
+        fi
+    fi
+
+    now="$(date --utc +%FT%TZ)"
+    echo "Current timestamp: ${now}" ; echo
+
+    set -x
+    ### no quotes around 'params'
+    docker build ${params} \
+        -f "${DOCKERFILE_PATH}" \
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --build-arg BASEIMAGE="${BASEIMAGE}" \
+            --build-arg BASETAG="${BASETAG}" \
+            --build-arg ARG_CREATED="${now}" \
+            --build-arg ARG_DOCKER_TAG=${DOCKER_TAG} \
+            --build-arg ARG_VERSION_STICKER="${version_sticker}" \
+            --build-arg ARG_VCS_REF="$(git rev-parse --short HEAD)" \
+            \
+            ${FEATURES_BUILD_SLIM:+--build-arg ARG_APT_NO_RECOMMENDS=1} \
+            ${FEATURES_SCREENSHOOTING:+--build-arg ARG_FEATURES_SCREENSHOOTING=1} \
+            ${FEATURES_THUMBNAILING:+--build-arg ARG_FEATURES_THUMBNAILING=1} \
+            \
+            ${FEATURES_VNC:+--build-arg ARG_TIGERVNC_DISTRO=${TIGERVNC_DISTRO}} \
+            ${FEATURES_VNC:+--build-arg ARG_TIGERVNC_VERSION=${TIGERVNC_VERSION}} \
+            \
+            ${FEATURES_NOVNC:+--build-arg ARG_NOVNC_VERSION=${NOVNC_VERSION}} \
+            ${FEATURES_NOVNC:+--build-arg ARG_WEBSOCKIFY_VERSION=${WEBSOCKIFY_VERSION}} \
+            ${FEATURES_NOVNC:+--build-arg ARG_MERGE_STAGE_VNC_BASE="stage_novnc"} \
+            \
+            ${FEATURES_CHROMIUM:+--build-arg ARG_MERGE_STAGE_BROWSER_BASE="stage_chromium"} \
+            \
+            ${FEATURES_FIREFOX:+--build-arg ARG_MERGE_STAGE_BROWSER_BASE="stage_firefox"} \
+            ${FEATURES_FIREFOX_PLUS:+--build-arg ARG_MERGE_STAGE_BROWSER_BASE="stage_firefox_plus"} \
+            \
+        -t "${DOCKER_REPO}:${DOCKER_TAG}${target_stage:+_${target_stage}}" "${_build_context}"
+    set +x
+}
+
+main $@
+
+echo -e "\n==> FINISHED  @$(date -u +'%Y-%m-%d_%H-%M-%S'): ${0} $@\n"
