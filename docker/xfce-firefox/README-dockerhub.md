@@ -2,7 +2,7 @@
 
 ## accetto/debian-vnc-xfce-firefox-g3
 
-[Docker Hub][this-docker] - [Git Hub][this-github] - [Dockerfile][this-dockerfile-22-04] - [Full Readme][this-readme-full] - [Changelog][this-changelog] - [Project Readme][this-readme-project]
+[Docker Hub][this-docker] - [Git Hub][this-github] - [Dockerfile][this-dockerfile] - [Full Readme][this-readme-full] - [Changelog][this-changelog] - [Project Readme][this-readme-project]
 
 ![badge-docker-pulls][badge-docker-pulls]
 ![badge-docker-stars][badge-docker-stars]

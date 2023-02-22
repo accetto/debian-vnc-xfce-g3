@@ -41,7 +41,7 @@ Version: G3v1
 
 ### Introduction
 
-This repository contains resources for building Docker images based on [Debian 11 (bullseye)][docker-debian] with [Xfce][xfce] desktop environment and [VNC][tigervnc]/[noVNC][novnc] servers for headless use.
+This repository contains resources for building Docker images based on [Debian 11][docker-debian] with [Xfce][xfce] desktop environment and [VNC][tigervnc]/[noVNC][novnc] servers for headless use.
 
 The resources for the individual images and their variations (tags) are stored in the subfolders of the **master** branch. Each image has its own README file describing its features and usage.
 
@@ -54,7 +54,7 @@ There are currently resources for the following Docker images:
 - [accetto/debian-vnc-xfce-g3][accetto-docker-debian-vnc-xfce-g3]
   - [full Readme][this-readme-image-base]
   - [Dockerfile][this-dockerfile] (common for all images)
-  - [Dockerfile stages diagram][this-diagram-dockerfile-stages] (common for all images)
+  - [sibling Dockerfile stages diagram][sibling-diagram-dockerfile-stages] (common for all images)
 - [accetto/debian-vnc-xfce-chromium-g3][accetto-docker-debian-vnc-xfce-chromium-g3]
   - [full Readme][this-readme-image-chromium]
 - [accetto/debian-vnc-xfce-firefox-g3][accetto-docker-debian-vnc-xfce-firefox-g3]
@@ -83,7 +83,7 @@ You can check the current shared memory size by executing the following command 
 df -h /dev/shm
 ```
 
-The older sibling project's Wiki page [Firefox multi-process][that-wiki-firefox-multiprocess] describes several ways, how to increase the shared memory size.
+The older sibling Wiki page [Firefox multi-process][that-wiki-firefox-multiprocess] describes several ways, how to increase the shared memory size.
 
 #### Extending images
 
@@ -209,9 +209,9 @@ Credit goes to all the countless people and companies, who contribute to open so
 
 [this-dockerfile]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/Dockerfile.xfce
 
-[this-readme-image-base]: https://github.com/accetto/ubuntu-vnc-xfce-g3/blob/master/docker/xfce/README.md
-[this-readme-image-chromium]: https://github.com/accetto/ubuntu-vnc-xfce-g3/blob/master/docker/xfce-chromium/README.md
-[this-readme-image-firefox]: https://github.com/accetto/ubuntu-vnc-xfce-g3/tree/master/docker/xfce-firefox
+[this-readme-image-base]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce/README.md
+[this-readme-image-chromium]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce-chromium/README.md
+[this-readme-image-firefox]: https://github.com/accetto/debian-vnc-xfce-g3/tree/master/docker/xfce-firefox
 
 [accetto-docker-debian-vnc-xfce-g3]: https://hub.docker.com/r/accetto/debian-vnc-xfce-g3
 [accetto-docker-debian-vnc-xfce-chromium-g3]: https://hub.docker.com/r/accetto/debian-vnc-xfce-chromium-g3
@@ -226,6 +226,8 @@ Credit goes to all the countless people and companies, who contribute to open so
 [accetto-github-ubuntu-vnc-xfce-g3_project-versions]: https://github.com/accetto/ubuntu-vnc-xfce-g3#project-versions
 [accetto-github-ubuntu-vnc-xfce-g3_project-goals]: https://github.com/accetto/ubuntu-vnc-xfce-g3#project-goals
 [accetto-github-ubuntu-vnc-xfce-g3_project-features]: https://github.com/accetto/ubuntu-vnc-xfce-g3#changes-and-new-features
+
+[sibling-diagram-dockerfile-stages]: https://raw.githubusercontent.com/accetto/ubuntu-vnc-xfce-g3/master/docker/doc/images/Dockerfile.xfce.png
 
 <!-- previous generations -->
 

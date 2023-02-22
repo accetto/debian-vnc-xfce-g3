@@ -24,7 +24,7 @@ case "$1" in
         echo $(dconf-editor --version 2>/dev/null | grep -Po -m1 '[0-9.]+$')
         ;;
     debian )
-        ### source example: 11 (bullseye)
+        ### source example: 11
         # echo $(cat /etc/os-release 2>/dev/null | grep -Po -m1 '(?<=VERSION\=")[0-9.]+')
         ### source example: 11.6
         echo $(cat /etc/debian_version 2>/dev/null | grep -Po -m1 '^[0-9.]+$')
