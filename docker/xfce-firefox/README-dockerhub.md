@@ -142,7 +142,7 @@ The main features and components of the images in the default configuration are:
 - current version of [tini][tini] as the entry-point initial process (PID 1)
 - support for overriding both the container user and the group
 - support of **version sticker** (see the [full-length README][this-readme-full] on the **GitHub**)
-- current version of [Firefox][firefox] web browser and some additional **Firefox plus features** described in the [full-length README][this-readme-full] on the GitHub
+- current version of [Firefox ESR (Extended Support Release)][firefox] web browser and some additional **Firefox plus features** described in the [full-length README][this-readme-full] on the GitHub
 
 The history of notable changes is documented in the [CHANGELOG][this-changelog].
 
