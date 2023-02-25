@@ -131,11 +131,13 @@ The dependency in this context is meant more technically than conceptually.
 
 The following example will help to understand the concept.
 
-The image `accetto/ubuntu-vnc-xfce-g3:latest-fugo` added some additional features to the image `accetto/ubuntu-vnc-xfce-g3:latest`, but otherwise were both images identical.
+This project currently does not include any images that are in such a relation. Therefore it will be explained using the images from the sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
 
-In such case a conclusion can be made, that if the `latest` tag does not need a refresh, then also the `latest-fugo` tag doesn't need it and it can be skipped.
+The image `accetto/ubuntu-vnc-xfce-firefox-g3:latest-plus` added some additional features to the image `accetto/ubuntu-vnc-xfce-firefox-g3:latest`, but otherwise were both images identical.
 
-There had been a similar dependency between the images `accetto/ubuntu-vnc-xfce-firefox-g3:latest-plus` and `accetto/ubuntu-vnc-xfce-firefox-g3:latest`.
+In such case a conclusion can be made, that if the `latest` tag does not need a refresh, then also the `latest-plus` tag doesn't need it and its building can be skipped.
+
+There had been a similar dependency between the images `accetto/ubuntu-vnc-xfce-g3:latest` and `accetto/ubuntu-vnc-xfce-g3:latest-fugo`.
 
 This kind of family-like relation allows to refresh the images more efficiently by skipping the "children" if the "parent" doesn't need a re-build.
 

@@ -25,7 +25,7 @@ The **Docker Hub** has removed the **auto-building feature** from the free plan 
 
 This page describes how to build the images locally and optionally also push them to the **Docker Hub**.
 
-The **second version** (G3v2) of the building pipeline in the sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] made it really easy, even if you want to build a set of images or all of them at once.
+The **second version** (G3v2) of the building pipeline introduced in the sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] made it really easy, even if you want to build a set of images or all of them at once.
 
 ## Preparation
 
@@ -58,7 +58,7 @@ The actual building pipeline consists of the following hook scripts stored in th
 
 The hook scripts are executed exactly in that order.
 
-The **second version** (G3v2) of the pipeline in the sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] has added also the helper script `cache`, which ist stored in the same folder. It is used by the hook scripts `pre_build` and `build` and it refreshes the local `g3-cache`. It can be also executed  stand-alone.
+The **second version** (G3v2) of the pipeline introduced in the sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] has added also the helper script `cache`, which ist stored in the same folder. It is used by the hook scripts `pre_build` and `build` and it refreshes the local `g3-cache`. It can be also executed  stand-alone.
 
 Utilizing the local `g3-cache` brings a significant boost in the building performance and much shorter building times.
 
@@ -66,7 +66,7 @@ There is also the helper script `util-readme.sh`, stored in the folder `utils/`.
 
 ## Three ways of building images
 
-Since the **second version** (G3v2) of the building pipeline in the sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] there are the following ways of building the images:
+Since the **second version** (G3v2) of the building pipeline introduced in the sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] there are the following ways of building the images:
 
 - Building sets of images by executing the helper script `ci-builder.sh`
 - Building the individual images by executing the helper script `builder.sh`
@@ -204,7 +204,7 @@ Both scripts insert the additional parameters just after the `docker build` part
 For example, if the additional parameters `--target stage_xfce --no-cache` are provided to the script `docker/hooks/build`, then the result Docker command line will begin like this:
 
 ```shell
-docker build --target stage_xfce --no-cache -f ./docker/Dockerfile.xfce.22-04 ...
+docker build --target stage_xfce --no-cache -f ./docker/Dockerfile.xfce ...
 ```
 
 However, there is a special handling of the parameter `--target`.
@@ -248,7 +248,7 @@ It allows to build even smaller images by excluding `noVNC` or `Firefox Plus fea
 If the environment variable `FEATURES_NOVNC` is explicitly set to zero (by `export FEATURES_NOVNC="0"`), then
 
 - image will not include `noVNC`
-- image tag will get the `-vnc` suffix (e.g. `latest-vnc`, `20.04-firefox-vnc` etc.)
+- image tag will get the `-vnc` suffix (e.g. `latest-vnc`, `latest-firefox-vnc` etc.)
 
 ### Disabling `Firefox Plus`
 
