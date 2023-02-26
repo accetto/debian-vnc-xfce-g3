@@ -191,7 +191,7 @@ Both **named volumes** and **bind mounts** can be used. More about volumes can b
 
 ### Version sticker
 
-Version sticker serves multiple purposes that are closer described in the [sibling Wiki][sibling-wiki]. Note that the usage of the version sticker has changed between the generations of images.
+Version sticker serves multiple purposes that are closer described in the [sibling Wiki][sibling-wiki-version-stickers]. Note that the usage of the version sticker has changed between the generations of images.
 
 The **short version sticker value** describes the version of the image and it is persisted in its **label** during the build-time. It is also shown as its **badge** in the README file.
 
@@ -685,6 +685,8 @@ The stage diagram doesn't differ from the [sibling project][accetto-github-ubunt
 [sibling-discussions]: https://github.com/accetto/ubuntu-vnc-xfce-g3/discussions
 
 [sibling-diagram-dockerfile-stages]: https://raw.githubusercontent.com/accetto/ubuntu-vnc-xfce-g3/master/docker/doc/images/Dockerfile.xfce.png
+
+[sibling-wiki-version-stickers]: https://github.com/accetto/ubuntu-vnc-xfce-g3/wiki/Concepts-of-dockerfiles
 
 <!-- Previous generations -->
 
