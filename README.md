@@ -125,7 +125,7 @@ The fastest way to build the images:
 ### and so on
 ```
 
-You can still execute the individual hook scripts as before (see the folder `/docker/hooks/`). However, the provided utilities `builder.sh` and `ci-builder.sh` are more convenient. Before pushing the images to the **Docker Hub** you have to prepare and source the file `secrets.rc` (see `example-secrets.rc`). The script `builder.sh` builds the individual images. The script `ci-builder.sh` can build various groups of images or all of them at once. Check the files `local-builder-readme.md`, `local-building-example.md` and the [sibling Wiki][sibling-wiki] for more information.
+You can still execute the individual hook scripts as before (see the folder `/docker/hooks/`). However, the provided utilities `builder.sh` and `ci-builder.sh` are more convenient. Before pushing the images to the **Docker Hub** you have to prepare and source the file `secrets.rc` (see `example-secrets.rc`). The script `builder.sh` builds the individual images. The script `ci-builder.sh` can build various groups of images or all of them at once. Check the [builder-utility-readme][this-builder-readme], [local-building-example][this-readme-local-building-example] and [sibling Wiki][sibling-wiki] for more information.
 
 #### Sharing devices
 
@@ -205,13 +205,15 @@ Credit goes to all the countless people and companies, who contribute to open so
 <!-- [this-github]: https://github.com/accetto/debian-vnc-xfce-g3/ -->
 [this-issues]: https://github.com/accetto/debian-vnc-xfce-g3/issues
 
-[this-diagram-dockerfile-stages]: https://raw.githubusercontent.com/accetto/debian-vnc-xfce-g3/master/docker/doc/images/Dockerfile.xfce.png
 
 [this-dockerfile]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/Dockerfile.xfce
 
 [this-readme-image-base]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce/README.md
 [this-readme-image-chromium]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce-chromium/README.md
 [this-readme-image-firefox]: https://github.com/accetto/debian-vnc-xfce-g3/tree/master/docker/xfce-firefox
+
+[this-builder-readme]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/readme-builder.md
+[this-readme-local-building-example]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/readme-local-building-example.md
 
 [accetto-docker-debian-vnc-xfce-g3]: https://hub.docker.com/r/accetto/debian-vnc-xfce-g3
 [accetto-docker-debian-vnc-xfce-chromium-g3]: https://hub.docker.com/r/accetto/debian-vnc-xfce-chromium-g3
