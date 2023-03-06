@@ -6,6 +6,11 @@
 
 ***
 
+### Release 23.03
+
+- updated with `TigerVNC 1.13.1` bugfix release
+- also some updates in readme files
+
 ### Release 23.02
 
 The initial version of the project has been derived from the sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] (version G3v4, release 23.02.1).

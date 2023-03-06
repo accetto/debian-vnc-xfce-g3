@@ -205,7 +205,6 @@ Credit goes to all the countless people and companies, who contribute to open so
 <!-- [this-github]: https://github.com/accetto/debian-vnc-xfce-g3/ -->
 [this-issues]: https://github.com/accetto/debian-vnc-xfce-g3/issues
 
-
 [this-dockerfile]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/Dockerfile.xfce
 
 [this-readme-image-base]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce/README.md
