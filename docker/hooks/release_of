@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 main() {
     local result=""
@@ -18,7 +18,7 @@ main() {
 
         echo "${result}"
     else
-        echo "Exiting '${0}' with code '1' because not able to get version of '$1'"
+        echo "Exiting '${0}' with code '1' because unable to get version of '$1'"
         return 1
     fi
 }

@@ -25,21 +25,21 @@ Version: G3v1
 
 - [Headless Debian/Xfce containers with VNC/noVNC](#headless-debianxfce-containers-with-vncnovnc)
   - [Project `accetto/debian-vnc-xfce-g3`](#project-accettodebian-vnc-xfce-g3)
-    - [Introduction](#introduction)
-    - [TL;DR](#tldr)
-      - [Installing packages](#installing-packages)
-      - [Shared memory size](#shared-memory-size)
-      - [Extending images](#extending-images)
-      - [Building images](#building-images)
-      - [Sharing devices](#sharing-devices)
-    - [Image generations](#image-generations)
-    - [Project versions](#project-versions)
-    - [Project goals](#project-goals)
-    - [Project features](#project-features)
+  - [Introduction](#introduction)
+  - [TL;DR](#tldr)
+    - [Installing packages](#installing-packages)
+    - [Shared memory size](#shared-memory-size)
+    - [Extending images](#extending-images)
+    - [Building images](#building-images)
+    - [Sharing devices](#sharing-devices)
+  - [Image generations](#image-generations)
+  - [Project versions](#project-versions)
+  - [Project goals](#project-goals)
+  - [Project features](#project-features)
   - [Issues, Wiki and Discussions](#issues-wiki-and-discussions)
   - [Credits](#credits)
 
-### Introduction
+## Introduction
 
 This repository contains resources for building Docker images based on [Debian 11][docker-debian] with [Xfce][xfce] desktop environment and [VNC][tigervnc]/[noVNC][novnc] servers for headless use.
 
@@ -47,7 +47,7 @@ The resources for the individual images and their variations (tags) are stored i
 
 The repository has been derived from the sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] containing similar images based on [Ubuntu 22.04 LTS and 20.04 LTS][docker-ubuntu].
 
-### TL;DR
+## TL;DR
 
 There are currently resources for the following Docker images:
 
@@ -60,7 +60,7 @@ There are currently resources for the following Docker images:
 - [accetto/debian-vnc-xfce-firefox-g3][accetto-docker-debian-vnc-xfce-firefox-g3]
   - [full Readme][this-readme-image-firefox]
 
-#### Installing packages
+### Installing packages
 
 I try to keep the images slim. Consequently you can sometimes encounter missing dependencies while adding more applications yourself. You can track the missing libraries on the [Debian Packages Search][debian-packages-search] page and install them subsequently.
 
@@ -73,7 +73,7 @@ sudo apt-get update
 sudo apt --fix-broken install
 ```
 
-#### Shared memory size
+### Shared memory size
 
 Note that some applications require larger shared memory than the default 64MB. Using 256MB usually solves crashes or strange behavior.
 
@@ -85,7 +85,7 @@ df -h /dev/shm
 
 The older sibling Wiki page [Firefox multi-process][that-wiki-firefox-multiprocess] describes several ways, how to increase the shared memory size.
 
-#### Extending images
+### Extending images
 
 The provided example file `Dockerfile.extend` shows how to use the images as the base for your own images.
 
@@ -93,7 +93,7 @@ Your concrete `Dockerfile` may need more statements, but the concept should be c
 
 The compose file `example.yml` shows how to switch to another non-root user and how to set the VNC password and resolution.
 
-#### Building images
+### Building images
 
 The fastest way to build the images:
 
@@ -127,7 +127,7 @@ The fastest way to build the images:
 
 You can still execute the individual hook scripts as before (see the folder `/docker/hooks/`). However, the provided utilities `builder.sh` and `ci-builder.sh` are more convenient. Before pushing the images to the **Docker Hub** you have to prepare and source the file `secrets.rc` (see `example-secrets.rc`). The script `builder.sh` builds the individual images. The script `ci-builder.sh` can build various groups of images or all of them at once. Check the [builder-utility-readme][this-builder-readme], [local-building-example][this-readme-local-building-example] and [sibling Wiki][sibling-wiki] for more information.
 
-#### Sharing devices
+### Sharing devices
 
 Sharing the audio device for video with sound works only with `Chromium` and only on Linux:
 
@@ -165,21 +165,21 @@ docker run -it -P --rm \
 xhost -local:$(whoami)
 ```
 
-### Image generations
+## Image generations
 
 This is the **third generation** (G3) of my headless images. The **second generation** (G2) contains the GitHub repository [accetto/xubuntu-vnc-novnc][accetto-github-xubuntu-vnc-novnc]. The **first generation** (G1) contains the GitHub repository [accetto/ubuntu-vnc-xfce][accetto-github-ubuntu-vnc-xfce].
 
-### Project versions
+## Project versions
 
 This file describes the **first generation** (G3v1) of this project, which however corresponds to the **fourth version** (G3v4) of the **sibling project** [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
 
 Please refer to the [sibling project][accetto-github-ubuntu-vnc-xfce-g3_project-versions] to learn more about the older project versions.
 
-### Project goals
+## Project goals
 
 Please refer to the [sibling project][accetto-github-ubuntu-vnc-xfce-g3_project-goals] to learn more about the project goals.
 
-### Project features
+## Project features
 
 Please refer to the [sibling project][accetto-github-ubuntu-vnc-xfce-g3_project-features] to learn more about the project features.
 
