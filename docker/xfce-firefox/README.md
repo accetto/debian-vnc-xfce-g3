@@ -395,9 +395,11 @@ During this one-time task the startup script needs to modify the container files
 
 The created user gets permissions for `sudo` and the ownership to the content of the home and startup folders.
 
-The temporary file `~/.initial_sudo_password` is also deleted after creating the user.
+The temporary file `${STARTUPDIR}/.initial_sudo_password` is cleared after creating the user.
 
-There is the script `~/tests/test-01.sh` that allows quick check of the current permissions.
+However, note that the initial `sudo` password will still be persisted in the image history. You have to change it inside the container, if you want to keep it really secret.
+
+There is the test script `~/tests/test-01.sh` that allows quick check of the current permissions.
 
 #### Other considerations
 
