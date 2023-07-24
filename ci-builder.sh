@@ -1,7 +1,7 @@
 #!/bin/bash
 ### do not use '-e'
 ### @accetto, September 2022
-### updated: January 2023
+### updated: July 2023
 
 ### depends on the script 'builder.sh'
 ### set the environment variables first, e.g. 'source .secrets'
@@ -288,13 +288,13 @@ main() {
                         pivotal )
 
                             clear_log
-                            build_group "${command}" "latest" "latest-chromium" "latest-firefox"
+                            build_group "${command}" "latest" "latest-firefox" "latest-chromium"
                             ;;
 
                         complete | complete-latest )
 
                             clear_log
-                            build_group "${command}" "latest" "latest-chromium" "latest-firefox"
+                            build_group "${command}" "latest" "latest-firefox" "latest-chromium"
                             ;;
 
                         complete-chromium )
@@ -330,8 +330,8 @@ main() {
                             clear_log
 
                             build_family "${command}" "latest"
-                            build_family "${command}" "latest-chromium"
                             build_family "${command}" "latest-firefox"
+                            build_family "${command}" "latest-chromium"
                             ;;
 
                         latest | latest-chromium | latest-firefox )
