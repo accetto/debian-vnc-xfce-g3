@@ -2,9 +2,13 @@
 
 ## Project `accetto/debian-vnc-xfce-g3`
 
-[Docker Hub][this-docker] - [Git Hub][this-github] - [sibling Wiki][sibling-wiki] - [sibling Discussions][sibling-discussions]
+[User Guide][this-user-guide] - [Docker Hub][this-docker] - [Git Hub][this-github] - [sibling Wiki][sibling-wiki] - [sibling Discussions][sibling-discussions]
 
 ***
+
+### Release 23.08
+
+This release brings updated and significantly shortened README files, because most of the content has been moved into the new [User guide][this-user-guide].
 
 ### Release 23.07.1
 
@@ -58,13 +62,14 @@ The initial version of the project has been derived from the sibling project [ac
 
 ***
 
+[this-user-guide]: https://accetto.github.io/user-guide-g3/
+
 [this-docker]: https://hub.docker.com/u/accetto/
 
 [this-github]: https://github.com/accetto/debian-vnc-xfce-g3/
 
 [accetto-github-ubuntu-vnc-xfce-g3]: https://github.com/accetto/ubuntu-vnc-xfce-g3
 
-<!-- Sibling projects -->
-
 [sibling-wiki]: https://github.com/accetto/ubuntu-vnc-xfce-g3/wiki
+
 [sibling-discussions]: https://github.com/accetto/ubuntu-vnc-xfce-g3/discussions
