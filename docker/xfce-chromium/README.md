@@ -8,17 +8,7 @@
 
 This GitHub project folder contains resources used by building Debian images available on Docker Hub in the repository [accetto/debian-vnc-xfce-chromium-g3][this-docker].
 
-The [Chromium Browser][chromium] in these images runs in the `--no-sandbox` mode.
-You should be aware of the implications.
-The images are intended for testing and development.
-
-There is also a sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] containing similar images based on [Ubuntu 22.04 LTS and 20.04 LTS][docker-ubuntu].
-
 This [User guide][this-user-guide] describes the images and how to use them.
-
-This is the **third generation** (G3) of my headless images.
-The **second generation** (G2) contains the GitHub repository [accetto/xubuntu-vnc-novnc][accetto-github-xubuntu-vnc-novnc].
-The **first generation** (G1) contains the GitHub repository [accetto/ubuntu-vnc-xfce][accetto-github-ubuntu-vnc-xfce].
 
 ### Building images
 
@@ -37,6 +27,18 @@ The **first generation** (G1) contains the GitHub repository [accetto/ubuntu-vnc
 ```
 
 Refer to the main [README][this-readme] file for more information about the building subject.
+
+### Remarks
+
+There is also a sibling project [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3] containing similar images based on [Ubuntu 22.04 LTS and 20.04 LTS][docker-ubuntu].
+
+This is the **third generation** (G3) of my headless images.
+The **second generation** (G2) contains the GitHub repository [accetto/xubuntu-vnc-novnc][accetto-github-xubuntu-vnc-novnc].
+The **first generation** (G1) contains the GitHub repository [accetto/ubuntu-vnc-xfce][accetto-github-ubuntu-vnc-xfce].
+
+The [Chromium Browser][chromium] in these images runs in the `--no-sandbox` mode.
+You should be aware of the implications.
+The images are intended for testing and development.
 
 ### Getting help
 
