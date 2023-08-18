@@ -1,7 +1,7 @@
 #!/bin/bash
 ### do not use '-e'
 ### @accetto, September 2022
-### updated: July 2023
+### updated: August 2023
 
 ### depends on the script 'builder.sh'
 ### set the environment variables first, e.g. 'source .secrets'
@@ -101,9 +101,9 @@ Usage: <script> <mode> <argument> [<optional-argument>]...
 <command>      := (all|all-no-push)
 <mode>         := (group|family)
 <blend>        := pivotal
-                  |(complete[-latest|-chromium|-firefox])
-                  |(latest[-chromium|-firefox])
-<parent-blend> := (complete)|(latest[-chromium|-firefox])
+                  |(complete[-latest|-bookworm|-bullseye|-chromium|-firefox])
+                  |(latest|bookworm|bullseye[-chromium|-firefox])
+<parent-blend> := (complete)|(latest|bookworm|bullseye[-chromium|-firefox])
 <child-suffix> := depends on context, e.g. '-ver1|-ver2' (currently none supported)
 
 Group mode : All images are processed independently.
@@ -292,25 +292,45 @@ main() {
                             build_group "${command}" "latest" "latest-firefox" "latest-chromium"
                             ;;
 
-                        complete | complete-latest )
+                        complete )
+
+                            clear_log
+                            build_group "${command}" "latest" "bullseye" "latest-firefox" "bullseye-firefox" "latest-chromium" "bullseye-chromium"
+                            ;;
+
+                        complete-latest )
 
                             clear_log
                             build_group "${command}" "latest" "latest-firefox" "latest-chromium"
                             ;;
 
+                        complete-bookworm )
+
+                            clear_log
+                            build_group "${command}" "bookworm" "bookworm-firefox" "bookworm-chromium"
+                            ;;
+
+                        complete-bullseye )
+
+                            clear_log
+                            build_group "${command}" "bullseye" "bullseye-firefox" "bullseye-chromium"
+                            ;;
+
                         complete-chromium )
 
                             clear_log
-                            build_group "${command}" "latest-chromium"
+                            build_group "${command}" "latest-chromium" "bullseye-chromium"
                             ;;
 
                         complete-firefox )
 
                             clear_log
-                            build_group "${command}" "latest-firefox"
+                            build_group "${command}" "latest-firefox" "bullseye-firefox"
                             ;;
 
-                        latest | latest-chromium | latest-firefox )
+                        latest | latest-chromium | latest-firefox \
+                        | bookworm | bookworm-chromium | bookworm-firefox \
+                        | bullseye | bullseye-chromium | bullseye-firefox )
 
                             clear_log
                             build_group "${command}" "${subject}" $@
@@ -335,7 +355,9 @@ main() {
                             build_family "${command}" "latest-chromium"
                             ;;
 
-                        latest | latest-chromium | latest-firefox )
+                        latest | latest-chromium | latest-firefox \
+                        | bookworm | bookworm-chromium | bookworm-firefox \
+                        | bullseye | bullseye-chromium | bullseye-firefox )
 
                             clear_log
                             build_family "${command}" "${subject}" $@

@@ -8,7 +8,7 @@ case "$1" in
         echo $(ng --version 2>/dev/null | grep -Po -m1 '(?<=Angular CLI:\s)[0-9.]+')
         ;;
     chromium | chromium-browser)
-        ### source example: Chromium 109.0.5414.119 built on Debian 11.6, running on Debian 11.6
+        ### source example: Chromium 115.0.5790.170 built on Debian 12.1, running on Debian 12.1
         echo $(chromium --version 2>/dev/null | grep -Po -m1 '(?<=Chromium\s)[0-9.]+')
         ;;
     code | vsc | vscode | visual-studio-code | visualstudiocode )

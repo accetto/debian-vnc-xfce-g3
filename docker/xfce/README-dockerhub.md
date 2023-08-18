@@ -12,7 +12,7 @@
 
 This Docker Hub repository contains Docker images for headless working.
 
-The images are based on [Debian 11][docker-debian] and include [Xfce][xfce] desktop, [TigerVNC][tigervnc] server and [noVNC][novnc] client.
+The images are based on the current [Debian 12][docker-debian] and the previous [Debian 11][docker-debian] and include [Xfce][xfce] desktop, [TigerVNC][tigervnc] server and [noVNC][novnc] client.
 
 This [User guide][this-user-guide] describes the images and how to use them.
 
@@ -24,10 +24,15 @@ The following image tags are regularly built and published on Docker Hub:
 
 <!-- markdownlint-disable MD052 -->
 
-- `latest` based on `Debian 11`
+- `latest` (also as `12`) based on `Debian 12`
 
     ![badge_latest_created][badge_latest_created]
     [![badge_latest_version-sticker][badge_latest_version-sticker]][link_latest_version-sticker-verbose]
+
+- `11` based on `Debian 11`
+
+    ![badge_11_created][badge_11_created]
+    [![badge_11_version-sticker][badge_11_version-sticker]][link_11_version-sticker-verbose]
 
 <!-- markdownlint-enable MD052 -->
 
@@ -91,7 +96,7 @@ If you have a question or an idea and you don't want to open an issue, you can a
 
 [this-dockerfile]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/Dockerfile.xfce
 
-[this-screenshot-container]: https://raw.githubusercontent.com/accetto/debian-vnc-xfce-g3/master/docker/doc/images/debian-vnc-xfce-g3-latest.png
+[this-screenshot-container]: https://raw.githubusercontent.com/accetto/debian-vnc-xfce-g3/master/docker/doc/images/animation-debian-vnc-xfce-g3.gif
 
 [accetto-dockerhub-ubuntu-vnc-xfce-g3]: https://hub.docker.com/r/accetto/ubuntu-vnc-xfce-g3
 

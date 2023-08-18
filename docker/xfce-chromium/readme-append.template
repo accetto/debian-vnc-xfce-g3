@@ -8,3 +8,11 @@
 [badge_latest_version-sticker]: https://badgen.net/https/gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@latest@version-sticker.json
 
 [link_latest_version-sticker-verbose]: https://gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@latest@version-sticker-verbose.txt
+
+<!-- 11 -->
+
+[badge_11_created]: https://badgen.net/https/gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@11@created.json
+
+[badge_11_version-sticker]: https://badgen.net/https/gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@11@version-sticker.json
+
+[link_11_version-sticker-verbose]: https://gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@11@version-sticker-verbose.txt

@@ -1,6 +1,6 @@
 #!/bin/bash -e
 ### @accetto, August 2021
-### updated: September 2022, January 2023
+### updated: August 2023
 
 ### depends on the hook scripts
 ### set the environment variables first, e.g. 'source .secrets'
@@ -44,7 +44,7 @@ This script can:
 
 Usage: $0 <blend> <command> [<docker-cli-options>]
 
-blend   := (latest[-chromium|-firefox])
+blend   := (latest|bookworm|bullseye)[-chromium|-firefox])
 command := (all|all-no-push)|(pre_build|build|push|post_push|cache)
 
 The <docker-cli-options> (e.g. '--no-cache') are passed to the Docker CLI commands used internally.

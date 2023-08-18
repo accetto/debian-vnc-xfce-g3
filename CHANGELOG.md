@@ -6,6 +6,26 @@
 
 ***
 
+### Release 23.08.1 (Milestone)
+
+This release brings new images based on the current **Debian 12**.
+The images based on the previous **Debian 11** will still be published into the same repositories.
+
+Other changes:
+
+- hook scripts `env.rc`, `push` and `post_push` have been updated
+- handling of multiple deployment tags per image has been improved and it covers also publishing into the builder repository now
+- file `readme-local-building-example.md` got a new section `Tips and examples`, containing
+  - `How to deploy all images into one repository`
+
+Main updated components:
+
+- `Debian` to version **12.1**
+- `Xfce` desktop to version **4.18**
+- `Mousepad` to version **0.5.10**
+- `nano` to version **7.2**
+- `Python` to version **3.11.2**
+
 ### Release 23.08
 
 This release brings updated and significantly shortened README files, because most of the content has been moved into the new [User guide][this-user-guide].
