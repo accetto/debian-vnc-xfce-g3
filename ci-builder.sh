@@ -289,7 +289,7 @@ main() {
                         pivotal )
 
                             clear_log
-                            build_group "${command}" "latest" "latest-firefox" "latest-chromium"
+                            build_group "${command}" "latest" "bullseye" "latest-firefox" "bullseye-firefox" "latest-chromium" "bullseye-chromium"
                             ;;
 
                         complete )
