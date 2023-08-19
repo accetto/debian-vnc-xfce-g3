@@ -15,6 +15,7 @@ Other changes:
 
 - hook scripts `env.rc`, `push` and `post_push` have been updated
 - handling of multiple deployment tags per image has been improved and it covers also publishing into the builder repository now
+  - also less image pollution by publishing
 - file `readme-local-building-example.md` got a new section `Tips and examples`, containing
   - `How to deploy all images into one repository`
 
