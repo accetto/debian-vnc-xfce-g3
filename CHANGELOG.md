@@ -6,6 +6,15 @@
 
 ***
 
+### Release 24.03
+
+This is the first `G3v5` release.
+
+*Remark*: The version numbers `G3v2`, `G3v3` and `G3v4` have been skipped, to align the numbering with the **sibling project** [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
+
+The updated script `set_user_permissions.sh`, which is part of Dockerfiles, skips the hidden files and directories now.
+It generally should not have any unwanted side effects, but it may make a difference in some scenarios, hence the version increase.
+
 ### Release 23.12
 
 This is a maintenance release.

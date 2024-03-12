@@ -2,7 +2,7 @@
 
 ## Project `accetto/debian-vnc-xfce-g3`
 
-Version: G3v1
+Version: G3v5
 
 ***
 
@@ -91,7 +91,16 @@ The **first generation** (G1) contains the GitHub repository [accetto/ubuntu-vnc
 
 ### Project versions
 
-This file describes the **first generation** (G3v1) of this project, which however corresponds to the **fourth version** (G3v4) of the **sibling project** [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
+This file describes the **fifth version** (G3v5) of the project.
+
+*Remark*: The version numbers `G3v2`, `G3v3` and `G3v4` have been skipped, to align the numbering with the **sibling project** [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
+
+The version `G3v5` brings only one significant change comparing to the previous version `G3v1`.
+
+- The updated script `set_user_permissions.sh`, which is part of Dockerfiles, skips the hidden files and directories now.
+It generally should not have any unwanted side effects, but it may make a difference in some scenarios, hence the version increase.
+
+
 
 Please refer to the [sibling project][accetto-github-ubuntu-vnc-xfce-g3_project-versions] to learn more about the older project versions.
 
