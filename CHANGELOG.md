@@ -6,6 +6,21 @@
 
 ***
 
+### Release 24.09
+
+This is the first `G3v6` release.
+However, it's a maintenance release and the version number has been increased just to keep it synchronized with the **sibling project** [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
+The previous version `G3v5` will still be available in this repository as the branch `archived-generation-g3v5`.
+
+Changes:
+
+- Default user `headless:headless (1000:1000)` has been changed to `headless:headless (1001:1001)`.
+  - This change has been only done to keep the containers uniform with the ones from the sibling `Ubuntu` projects.
+- The directive `syntax=docker/dockerfile:experimental` has been removed from all Dockerfiles.
+- The `noVNC` starting page has been updated in all images.
+  - If no `noVNC Client` is selected, then the `Full Client` will start automatically in 10 seconds.
+- The hook script `release_of` has been updated with the intention to report more helpful building errors.
+
 ### Release 24.03
 
 This is the first `G3v5` release.

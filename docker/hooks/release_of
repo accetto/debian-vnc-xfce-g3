@@ -2,6 +2,8 @@
 
 main() {
     local result=""
+    local response=""
+    local truncateMax=1000
 
     case "$1" in
 
@@ -18,7 +20,10 @@ main() {
 
         echo "${result}"
     else
-        echo "Exiting '${0}' with code '1' because unable to get version of '$1'"
+        echo "ERROR: Exiting '${0}' with code '1' because unable to get version of '$1'"
+        echo "ERROR: Unexpected HTTPS response (truncated to $truncateMax):"
+        ### don't use quotes here
+        echo ${response:0:truncateMax}
         return 1
     fi
 }

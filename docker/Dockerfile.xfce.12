@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:experimental
-
 ARG BASEIMAGE=debian
 ARG BASETAG=12-slim
 
@@ -18,7 +16,7 @@ ARG ARG_SUDO_INITIAL_PW=headless
 ### stage_cache
 ###############
 
-FROM ${BASEIMAGE}:${BASETAG} as stage_cache
+FROM ${BASEIMAGE}:${BASETAG} AS stage_cache
 
 ### refresh the 'apt' cache
 RUN rm -f /etc/apt/apt.conf.d/docker-clean ; \
@@ -38,7 +36,7 @@ RUN \
 ### stage_essentials
 ####################
 
-FROM ${BASEIMAGE}:${BASETAG} as stage_essentials
+FROM ${BASEIMAGE}:${BASETAG} AS stage_essentials
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
@@ -59,7 +57,7 @@ RUN \
 ### stage_xserver
 #################
 
-FROM stage_essentials as stage_xserver
+FROM stage_essentials AS stage_xserver
 ARG ARG_APT_NO_RECOMMENDS
 
 ENV \
@@ -81,7 +79,7 @@ RUN \
 ### stage_xfce
 ##############
 
-FROM stage_xserver as stage_xfce
+FROM stage_xserver AS stage_xfce
 ARG ARG_APT_NO_RECOMMENDS
 
 ENV FEATURES_BUILD_SLIM_XFCE="${ARG_APT_NO_RECOMMENDS:+1}"
@@ -98,7 +96,7 @@ RUN \
 ### stage_tools
 ###############
 
-FROM stage_xfce as stage_tools
+FROM stage_xfce AS stage_tools
 ARG ARG_APT_NO_RECOMMENDS
 ARG ARG_FEATURES_SCREENSHOOTING
 ARG ARG_FEATURES_THUMBNAILING
@@ -124,7 +122,7 @@ RUN \
 ### stage_vnc
 #############
 
-FROM stage_tools as stage_vnc
+FROM stage_tools AS stage_vnc
 ARG ARG_VNC_COL_DEPTH
 ARG ARG_VNC_DISPLAY
 ARG ARG_VNC_PORT
@@ -165,7 +163,7 @@ EXPOSE "${VNC_PORT}"
 ### stage_novnc
 ###############
 
-FROM stage_vnc as stage_novnc
+FROM stage_vnc AS stage_novnc
 ARG ARG_APT_NO_RECOMMENDS
 ARG ARG_NOVNC_PORT
 ARG ARG_NOVNC_VERSION
@@ -207,10 +205,12 @@ RUN echo \
     <head>\n\
         <title>noVNC</title>\n\
         <meta charset=\"utf-8\"/>\n\
+        <meta http-equiv=\"refresh\" content=\"10; url='vnc.html'\" />\n\
     </head>\n\
     <body>\n\
-        <p><a href=\"vnc_lite.html\">noVNC Lite Client</a></p>\n\
-        <p><a href=\"vnc.html\">noVNC Full Client</a></p>\n\
+    <p><a href=\"vnc_lite.html\">noVNC Lite Client</a></p>\n\
+    <p><a href=\"vnc.html\">noVNC Full Client</a></p>\n\
+    <p>Full Client will start automatically in 10 seconds...</p>\n\
     </body>\n\
 </html>" \
 > "${NOVNC_HOME}"/index.html
@@ -222,7 +222,7 @@ EXPOSE "${NOVNC_PORT}"
 ### merge_stage_vnc
 ###################
 
-FROM ${ARG_MERGE_STAGE_VNC_BASE} as merge_stage_vnc
+FROM ${ARG_MERGE_STAGE_VNC_BASE} AS merge_stage_vnc
 ARG ARG_HEADLESS_USER_ID
 ARG ARG_HEADLESS_USER_NAME
 ARG ARG_HEADLESS_USER_GROUP_ID
@@ -245,7 +245,7 @@ COPY ./src/home "${HOME}"/
 ### stage_chromium
 ##################
 
-FROM merge_stage_vnc as stage_chromium
+FROM merge_stage_vnc AS stage_chromium
 ARG ARG_APT_NO_RECOMMENDS
 
 ENV \
@@ -266,7 +266,7 @@ COPY ./xfce-chromium/src/home/readme*.md "${HOME}"/
 ### stage_firefox
 #################
 
-FROM merge_stage_vnc as stage_firefox
+FROM merge_stage_vnc AS stage_firefox
 ARG ARG_APT_NO_RECOMMENDS
 
 ENV \
@@ -286,7 +286,7 @@ COPY ./xfce-firefox/src/home/Desktop "${HOME}"/Desktop/
 ### stage_firefox_plus
 ### ##################
 
-FROM stage_firefox as stage_firefox_plus
+FROM stage_firefox AS stage_firefox_plus
 
 ENV FEATURES_FIREFOX_PLUS=1
 
@@ -305,14 +305,14 @@ RUN \
 ### merge_stage_browser
 #######################
 
-FROM ${ARG_MERGE_STAGE_BROWSER_BASE} as merge_stage_browser
+FROM ${ARG_MERGE_STAGE_BROWSER_BASE} AS merge_stage_browser
 
 
 ###############
 ### FINAL STAGE
 ###############
 
-FROM ${ARG_FINAL_STAGE_BASE} as stage_final
+FROM ${ARG_FINAL_STAGE_BASE} AS stage_final
 ARG ARG_FEATURES_OVERRIDING_ENVV
 ARG ARG_SUDO_INITIAL_PW
 
@@ -359,7 +359,7 @@ ENTRYPOINT [ "/usr/bin/tini", "--", "/dockerstartup/startup.sh" ]
 ### METADATA STAGE
 ##################
 
-FROM stage_final as stage_metadata
+FROM stage_final AS stage_metadata
 ARG ARG_CREATED
 ARG ARG_DOCKER_TAG
 ARG ARG_VCS_REF
