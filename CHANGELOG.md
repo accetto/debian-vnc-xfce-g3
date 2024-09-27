@@ -6,6 +6,15 @@
 
 ***
 
+### Release 24.09.1
+
+This is a fix release, finishing the changes announced in the previous release.
+
+Changes:
+
+- Default user `headless:headless (1000:1000)` has been changed to `headless:headless (1001:1001)`.
+  - This change has been only done to keep the containers uniform with the ones from the sibling `Ubuntu` projects.
+
 ### Release 24.09
 
 This is the first `G3v6` release.
@@ -14,7 +23,7 @@ The previous version `G3v5` will still be available in this repository as the br
 
 Changes:
 
-- Default user `headless:headless (1000:1000)` has been changed to `headless:headless (1001:1001)`.
+- **[Sorry, this one change actually comes in the next release.]** - Default user `headless:headless (1000:1000)` has been changed to `headless:headless (1001:1001)`.
   - This change has been only done to keep the containers uniform with the ones from the sibling `Ubuntu` projects.
 - The directive `syntax=docker/dockerfile:experimental` has been removed from all Dockerfiles.
 - The `noVNC` starting page has been updated in all images.
