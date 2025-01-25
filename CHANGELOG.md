@@ -6,6 +6,15 @@
 
 ***
 
+### Release 25.01
+
+This is a maintenance release.
+
+Updated components:
+
+- `noVNC` to version **1.5.0**
+- `websockify` to version **0.12.0**
+
 ### Release 24.09.1
 
 This is a fix release, finishing the changes announced in the previous release.
