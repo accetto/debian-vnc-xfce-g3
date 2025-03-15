@@ -6,6 +6,36 @@
 
 ***
 
+### Release 25.03 (G3v7)
+
+This is the first `G3v7` release, bringing an improved building pipeline.
+
+The helper script `ci-builder.sh` can build final images significantly faster, because the temporary helper images are used as external caches.
+
+Internally, the helper image is built by the `pre_build` hook script and then used by the `build` hook script.
+
+The helper image is now deleted by the `build` hook script and not the `pre_build` hook script as before.
+
+The `Dockerfiles` got a new metadata label `any.accetto.built-by="docker"`.
+
+#### Remarks
+
+If you would build a final image without building also the helper image (e.g. by executing `builder.sh latest build`), then there could be an error message about trying to remove the non-existing helper image.
+You can safely ignore the message.
+
+For example:
+
+```shell
+### The next line would build the helper image, but it was not executed.
+#./build.sh latest pre_build
+
+./build.sh latest build
+
+### then somewhere near the end of the log
+Removing helper image
+Error response from daemon: No such image: accetto/headless-debian-g3_latest-helper:latest
+```
+
 ### Release 25.01
 
 This is a maintenance release.
@@ -38,7 +68,7 @@ Changes:
 - Default user `headless:headless (1000:1000)` has been changed to `headless:headless (1001:1001)`.
   - This change has been only done to keep the containers uniform with the ones from the sibling `Ubuntu` projects.
 
-### Release 24.09
+### Release 24.09 (G3v6)
 
 This is the first `G3v6` release.
 However, it's a maintenance release and the version number has been increased just to keep it synchronized with the **sibling project** [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
@@ -53,7 +83,7 @@ Changes:
   - If no `noVNC Client` is selected, then the `Full Client` will start automatically in 10 seconds.
 - The hook script `release_of` has been updated with the intention to report more helpful building errors.
 
-### Release 24.03
+### Release 24.03 (G3v5)
 
 This is the first `G3v5` release.
 
