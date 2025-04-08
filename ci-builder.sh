@@ -1,7 +1,5 @@
 #!/bin/bash
 ### do not use '-e'
-### @accetto, September 2022
-### updated: August 2023
 
 ### depends on the script 'builder.sh'
 ### set the environment variables first, e.g. 'source .secrets'
@@ -75,7 +73,7 @@ show_log_timing() {
 
 show_log_errors() {
 
-    echo -e "\n--> Building errors:\n"
+    echo -e "\n--> Building errors and warnings:\n"
     grep -iPn "${_regex_log_errors}" "${_ci_builder_log}"
     echo
 }
@@ -399,7 +397,7 @@ declare _log_mark="\n[CI-BUILDER]"
 declare _regex_log_digest="(?<=\[CI-BUILDER\] ).+"
 declare _regex_log_stickers="Current version sticker of "
 declare _regex_log_timing="==> (EXECUTING @.*builder\.sh.*|FINISHED  @.*builder\.sh.*)"
-declare _regex_log_errors="\berror\b"
+declare _regex_log_errors="\berror\b|\bwarning\b|\bexiting at line\b"
 
 declare _flag_skip_footer=""
 declare _option_nocache=""

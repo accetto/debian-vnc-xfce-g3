@@ -1,6 +1,6 @@
 #!/bin/bash
-### @accetto, September 2019
-### updated: January 2023
+
+# cSpell:disable
 
 case "$1" in
     angular | angular-cli | angularcli | ng )

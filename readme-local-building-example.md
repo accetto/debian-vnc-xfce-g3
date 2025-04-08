@@ -194,9 +194,9 @@ You can find more information and examples in the separate `readme` file, descri
 
 Note that the script `builder.sh` benefits from the `G3v7` pipeline improvements only if the helper image is also built.
 
-That is the case only by using the commands `all|all-no-push` or by building the helper images by the command `pre_buil` before using the `build` command.
+That is the case only by using the commands `all|all-no-push` or by building the helper images by the command `pre_build` before using the `build` command.
 
-Note thet the `build` command deletes the helper image after using it as an external cache.
+Note that the `build` command deletes the helper image after using it as an external cache.
 
 ### Step-by-step building and publishing
 
