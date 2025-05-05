@@ -28,6 +28,13 @@ On Windows you have generally two choices.
 You can build your images inside the `WSL` environment or you can download the `wget.exe` application for Windows.
 Make sure to update also the `PATH` environment variable appropriately.
 
+Since the version `25.04` the availability of the utility is checked.
+
+The checking can be skipped by setting the environment variable `IGNORE_MISSING_WGET=1`.
+
+The selected packages still will be downloaded into a temporary image layer, but not into the project's
+`.g3-cache` folder nor the shared one, defined by the variable `SHARED_G3_CACHE_PATH`.
+
 ## Local `g3-cache`
 
 The local `g3-cache` of this project has the following **cache sections**:
@@ -53,6 +60,9 @@ Therefore it's sometimes referenced as a hook script.
 
 The script is used by the hook scripts `pre_build` and `build`.
 However, it can be executed also stand-alone.
+
+Since the version `G3v8` (Release `25.05`) the updated script checks if the shared `g3-cache` directory, defined by the environment variable `SHARED_G3_CACHE_PATH`, is reachable and writable.
+The shared `g3-cache` update will be skipped otherwise.
 
 **Remark**: The current implementation of the cache refreshing code is not thread safe and it is not intended for parallel building of multiple images.
 

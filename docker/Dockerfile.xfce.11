@@ -349,7 +349,6 @@ RUN \
     &&  chmod +x "${STARTUPDIR}"/set_user_permissions.sh \
     && "${STARTUPDIR}"/set_user_permissions.sh "${STARTUPDIR}" "${HOME}"
 
-
 USER "${HEADLESS_USER_ID}"
 
 ENTRYPOINT [ "/usr/bin/tini", "--", "/dockerstartup/startup.sh" ]

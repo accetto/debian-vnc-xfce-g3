@@ -2,7 +2,7 @@
 
 ## Project `accetto/debian-vnc-xfce-g3`
 
-Version: G3v7
+Version: G3v8
 
 ***
 
@@ -10,13 +10,13 @@ Version: G3v7
 
 ![badge-github-release][badge-github-release]
 ![badge-github-release-date][badge-github-release-date]
-![badge-github-stars][badge-github-stars]
-![badge-github-forks][badge-github-forks]
 ![badge-github-open-issues][badge-github-open-issues]
 ![badge-github-closed-issues][badge-github-closed-issues]
 ![badge-github-releases][badge-github-releases]
 ![badge-github-commits][badge-github-commits]
 ![badge-github-last-commit][badge-github-last-commit]
+![badge-github-stars][badge-github-stars]
+![badge-github-forks][badge-github-forks]
 
 ***
 
@@ -93,24 +93,41 @@ The **first generation** (G1) contains the GitHub repository [accetto/ubuntu-vnc
 
 ### Project versions
 
-This file describes the **seventh version** (G3v7) of the project.
+This file describes the **eighths version** (G3v8) of the project.
 
-This version brings an improved building pipeline.
+This version brings some changes in the building pipeline and building utilities and it also fixes the problem with the badge service.
 
-The helper script `ci-builder.sh` can build final images significantly faster, because the temporary helper images are used as external caches.
+The service **Badgen.net**, which has been unusable for some time already, was replaced by the service [Shields.io][service-shields-io].
 
-Internally, the helper image is built by the `pre_build` hook script and then used by the `build` hook script.
+Consequently it was necessary to update all README files of all `accetto` repositories on **Docker Hub**. Therefore there are several new functions that support this kind of scenarios.
 
-The helper image is now removed by the `build` hook script and not the `pre_build` hook script.
+For example, now it's possible to update the `deployment gists` on the **GitHub** without re-build the images first. The updated hook script `post_push` can extract the badge values ad-hoc from the final deployment images available locally and it doesn't depend on the helper files created during the `pre_build` phase. It would use the images pulled from the **Docker Hub** as well.
 
-However, also this version keeps evolving.
-Please check the [CHANGELOG][this-changelog] for more information about the changes.
+This change makes it possible to refresh the gists using the "historical" data extracted from previously published images.
+
+Gist updates are also more reliable because there will be up to 3 retries if an update fails.
+
+The new functionality is available through the updated utility `ci-builder.sh`, which has got the following new commands:
+
+- `list`
+- `pull`
+- `update-gists`
+- `helper-help`
+
+Please check the files `readme-ci-builder.md` and `readme-builder.md` for the description.
+
+However, the project keeps evolving.
+Please always check the [CHANGELOG][this-changelog] for the latest changes.
 
 #### Previous versions
 
 The previous versions are still available in this **GitHub** repository as the branches named as `archived-generation-g3v{d}`.
 
-*Remark*: The version numbers `G3v2`, `G3v3` and `G3v4` have been skipped, to align the numbering with the **sibling project** [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
+The version `G3v7` could build final images significantly faster, because the temporary helper images were used as external caches.
+
+Internally, the helper image was built by the `pre_build` hook script and then used by the `build` hook script as an external cache.
+
+The helper image was then removed by the `build` hook script and not the `pre_build` hook script as before, unless the `build` script will be skipped.
 
 The main purpose of the version `G3v6` was to keep the project and the images uniform with the ones from the sibling `Ubuntu` projects.
 
@@ -118,6 +135,7 @@ The version `G3v5` has brought only one significant change comparing to the prev
 
 - The updated script `set_user_permissions.sh`, which is part of Dockerfiles, skips the hidden files and directories now.
 It generally should not have any unwanted side effects, but it may make a difference in some scenarios, hence the version increase.
+*Remark*: The version numbers `G3v4`, `G3v3` and `G3v2` have been skipped, to align the numbering with the **sibling project** [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
 
 Please refer to the [sibling project][accetto-github-ubuntu-vnc-xfce-g3_project-versions] to learn more about the older project versions.
 
@@ -229,3 +247,5 @@ Credit goes to all the countless people and companies, who contribute to open so
 [badge-github-closed-issues]: https://badgen.net/github/closed-issues/accetto/debian-vnc-xfce-g3?icon=github&label=closed%20issues
 
 [badge-github-open-issues]: https://badgen.net/github/open-issues/accetto/debian-vnc-xfce-g3?icon=github&label=open%20issues
+
+[service-shields-io]: https://shields.io/

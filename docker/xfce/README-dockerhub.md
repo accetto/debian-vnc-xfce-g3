@@ -4,9 +4,10 @@
 
 [User Guide][this-user-guide] - [GitHub][this-github] - [Dockerfile][this-dockerfile] - [Readme][this-readme-full] - [Changelog][this-changelog]
 
-![badge-docker-pulls][badge-docker-pulls]
+<!-- markdownlint-disable MD038 MD052 -->
+![badge-github-release][badge-github-release]` `
+![badge-docker-pulls][badge-docker-pulls]` `
 ![badge-docker-stars][badge-docker-stars]
-![badge-github-release][badge-github-release]
 
 ***
 
@@ -22,16 +23,14 @@ The related [GitHub project][this-github] contains image generators that image u
 
 The following image tags are regularly built and published on Docker Hub:
 
-<!-- markdownlint-disable MD052 -->
-
 - `latest` (also as `12`) based on `Debian 12`
 
-    ![badge_latest_created][badge_latest_created]
+    ![badge_latest_created][badge_latest_created]` `
     [![badge_latest_version-sticker][badge_latest_version-sticker]][link_latest_version-sticker-verbose]
 
 - `11` based on `Debian 11`
 
-    ![badge_11_created][badge_11_created]
+    ![badge_11_created][badge_11_created]` `
     [![badge_11_version-sticker][badge_11_version-sticker]][link_11_version-sticker-verbose]
 
 <!-- markdownlint-enable MD052 -->
@@ -120,10 +119,10 @@ If you have a question or an idea and you don't want to open an issue, you can a
 [tini]: https://github.com/krallin/tini
 [xfce]: http://www.xfce.org
 
-[badge-github-release]: https://badgen.net/github/release/accetto/debian-vnc-xfce-g3?icon=github&label=GitHub
+[badge-github-release]: https://img.shields.io/github/v/release/accetto/debian-vnc-xfce-g3
 
-[badge-docker-pulls]: https://badgen.net/docker/pulls/accetto/debian-vnc-xfce-g3?icon=docker&label=pulls
+[badge-docker-pulls]: https://img.shields.io/docker/pulls/accetto/debian-vnc-xfce-g3
 
-[badge-docker-stars]: https://badgen.net/docker/stars/accetto/debian-vnc-xfce-g3?icon=docker&label=stars
+[badge-docker-stars]: https://img.shields.io/docker/stars/accetto/debian-vnc-xfce-g3
 
 <!-- Appendix will be added by util-readme.sh -->
