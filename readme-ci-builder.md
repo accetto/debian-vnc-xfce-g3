@@ -11,12 +11,19 @@
       - [Group mode examples](#group-mode-examples)
     - [Family mode](#family-mode)
       - [Family mode examples](#family-mode-examples)
+    - [Blend names and synonyms](#blend-names-and-synonyms)
     - [Log processing](#log-processing)
       - [Digest command](#digest-command)
       - [Stickers command](#stickers-command)
       - [Timing command](#timing-command)
       - [Errors command](#errors-command)
   - [Additional building parameters](#additional-building-parameters)
+  - [Helper commands for specific scenarios](#helper-commands-for-specific-scenarios)
+    - [Command `list`](#command-list)
+    - [Command `pull`](#command-pull)
+    - [Command `update-gists`](#command-update-gists)
+    - [Command `helper-help`](#command-helper-help)
+    - [Example](#example)
 
 ## Introduction
 
@@ -52,11 +59,12 @@ Usage: <script> <mode> <argument> [<optional-argument>]...
 
 <options>      := (--log-all|--no-cache)
 <command>      := (all|all-no-push)
+                  |(pull|update-gists|list|helper-help)
 <mode>         := (group|family)
 <blend>        := pivotal
-                  |(complete[-latest|-chromium|-firefox])
-                  |(latest[-chromium|-firefox])
-<parent-blend> := (complete)|(latest[-chromium|-firefox])
+                  |(complete[-latest|-bookworm|-bullseye|-12|-11|-chromium|-firefox])
+                  |(latest|bookworm|bullseye|12|11[-chromium|-firefox])
+<parent-blend> := (complete)|(latest|bookworm|bullseye|12|11[-chromium|-firefox])
 <child-suffix> := depends on context, e.g. '-ver1|-ver2' (currently none supported)
 
 Group mode : All images are processed independently.
@@ -156,6 +164,13 @@ On Windows you have generally two choices.
 You can build your images inside the `WSL` environment or you can download the `wget.exe` application for Windows.
 Make sure to update also the `PATH` environment variable appropriately.
 
+Since the version `25.04` the availability of the utility is checked.
+
+The checking can be skipped by setting the environment variable `IGNORE_MISSING_WGET=1`.
+
+The selected packages still will be downloaded into a temporary image layer, but not into the project's
+`.g3-cache` folder nor the shared one, defined by the variable `SHARED_G3_CACHE_PATH`.
+
 ## Usage modes
 
 ### Group mode
@@ -248,6 +263,41 @@ For example:
 ```shell
 ### image 'latest-fugo' will be skipped if the 'latest' image doesn't need a re-build
 ./ci-builder.sh all-no-push family latest -fugo
+```
+
+### Blend names and synonyms
+
+Blends relate to the `Debian` versions. The blends in the command line can be replaced by their synonyms.
+
+Since the version `G3v8` (Release `25.05`), the `Debian` versions can be used as the blend synonyms.
+
+The following table illustrates the relations.
+
+| Debian Version | Blend    | Synonym 1 | Synonym 2 |
+| -------------- | -------- | --------- | --------- |
+| 12             | latest   | 12        | bookworm  |
+| 11             | bullseye | 11        |           |
+
+For example, the following command line groups are functional equivalents:
+
+```shell
+### Group 1
+./ci-builder.sh list group latest
+./ci-builder.sh list group bookworm
+./ci-builder.sh list group 12
+
+### Group 2
+./ci-builder.sh list group complete-latest
+./ci-builder.sh list group complete-bookworm
+./ci-builder.sh list group complete-12
+
+### Group 3
+./ci-builder.sh list group bullseye
+./ci-builder.sh list group 11
+
+### Group 4
+./ci-builder.sh list group complete-bullseye
+./ci-builder.sh list group complete-11
 ```
 
 ### Log processing
@@ -344,6 +394,160 @@ The output is mostly empty:
 There is no notion of additional building parameters by the script `ci-builder.sh` (compare to [builder.sh][readme-builder]).
 
 There is no way to build the images only from particular Dockerfile stages using the script `ci-builder.sh`.
+
+## Helper commands for specific scenarios
+
+There has been a case when it was necessary to update the badges of all repositories because of switching from the **badgen.net** provider to the **shields.io** one.
+
+Therefore the **Release 25.05 (G3v8)** has introduced a new hook script called `helper` and also the following new commands:
+
+- list
+- pull
+- update-gists
+- helper-help
+
+The commands are forwarded by the utility script `builder.sh` to the appropriate target scripts, as it's described in the file `readme-builder.md`.
+
+There is also a new wildcard value `any`, which can be generally used for the command arguments `branch` and `blend` in all cases when the argument values are not really needed, but they are enforced purely by the command syntax.
+
+### Command `list`
+
+The **list** command displays a list of the actual names of the target build and deployment images, that would be built during the given building scenario.
+The names of possible helper images will not be included.
+
+For example:
+
+```shell
+debian-vnc-xfce-g3> ./ci-builder.sh list group complete-latest
+
+### would output
+Build target => accetto/headless-debian-g3:latest
+Deploy target => accetto/debian-vnc-xfce-g3:latest
+Build target => accetto/headless-debian-g3:latest-firefox
+Deploy target => accetto/debian-vnc-xfce-firefox-g3:latest
+Build target => accetto/headless-debian-g3:latest-chromium
+Deploy target => accetto/debian-vnc-xfce-chromium-g3:latest
+```
+
+### Command `pull`
+
+The **pull** command pulls from ***Docker Hub* all the images that would be built and published during the given building scenario.
+
+For example:
+
+```shell
+debian-vnc-xfce-g3> ./ci-builder.sh pull group complete-latest
+
+### would pull the following images
+accetto/debian-vnc-xfce-chromium-g3   latest
+accetto/debian-vnc-xfce-firefox-g3    latest
+accetto/debian-vnc-xfce-g3            latest
+```
+
+### Command `update-gists`
+
+The **update-gists** command updates the deployment gists of the images that would be built and deployed in the given build scenario.
+
+It's expected that all such images are already available locally, e.g that they've been previously built or pulled from the **Docker Hub**.
+
+The values of the `created` and `version sticker` badges are extracted from the local images and the `verbose version sticker` badge values are generated using them.
+
+For example:
+
+```shell
+### would update all deployment gists belonging to the above images
+debian-vnc-xfce-g3> ./ci-builder.sh update-gists group complete-latest
+
+### extract from the output
+Missing builder image 'accetto/headless-debian-g3:latest'.
+Getting badge values from deployment image 'accetto/headless-debian-g3:latest'.
+Wait... generating current verbose sticker file './docker/scrap-version_sticker-verbose_current.tmp'
+
+Badge 'created': 2025-04-08T16:24:33Z
+Badge 'version_sticker': debian12.10
+Badge 'version_sticker_verbose':
+...
+Updating builder gists for 'accetto/headless-debian-g3:latest'
+Updating gist 'headless-debian-g3@latest@created.json'
+Attempt 1 of 3...
+Gist 'headless-debian-g3@latest@created.json' updated successfully on attempt 1
+Updating gist 'headless-debian-g3@latest@version-sticker.json'
+Attempt 1 of 3...
+Gist 'headless-debian-g3@latest@version-sticker.json' updated successfully on attempt 1
+Updating gist 'headless-debian-g3@latest@version-sticker-verbose.txt'
+Attempt 1 of 3...
+Gist 'headless-debian-g3@latest@version-sticker-verbose.txt' updated successfully on attempt 1
+...
+Updating deployment gists for 'accetto/debian-vnc-xfce-g3:latest'
+Updating gist 'debian-vnc-xfce-g3@latest@created.json'
+Attempt 1 of 3...
+Gist 'debian-vnc-xfce-g3@latest@created.json' updated successfully on attempt 1
+Updating gist 'debian-vnc-xfce-g3@latest@version-sticker.json'
+Attempt 1 of 3...
+Gist 'debian-vnc-xfce-g3@latest@version-sticker.json' updated successfully on attempt 1
+Updating gist 'debian-vnc-xfce-g3@latest@version-sticker-verbose.txt'
+Attempt 1 of 3...
+Gist 'debian-vnc-xfce-g3@latest@version-sticker-verbose.txt' updated successfully on attempt 1
+...
+```
+
+### Command `helper-help`
+
+The **helper-help** command displays the embedded help of the new hook script called `helper`, which supports the other new commands.
+
+From the example below it can be also seen, that this is one of the commands, which can be used with the newly introduced wildcard value `any` for the `branch` and `blend` arguments.
+  Generally the wildcard value `any` should work in all cases when the argument values are not really needed but they are enforced purely by the command syntax.
+
+For example:
+
+```shell
+debian-vnc-xfce-g3> ./ci-builder.sh helper-help group any any
+Warning from 'ci-builder.sh': Nothing to do for 'any' blend!
+Provided parameters:
+command=helper-help
+subject=any
+Warning from 'env.rc': Allowing 'any' blend!
+
+The script "./docker/hooks/helper" contains helper functions for the script 'ci-builder.sh'.
+
+Usage: ./docker/hooks/helper <branch> <blend> <command>
+
+<branch>    := (any|dev|(or see 'env.rc'))
+<blend>     (any|(or see 'env.rc'))
+<command>   := (help|--help|-h)
+            (list-target|list-build-target|list-deploy-target)
+            (pull|pull-deploy-target|pull-build-target)
+Warning from 'env.rc': Allowing 'any' blend!
+
+The script "./docker/hooks/helper" contains helper functions for the script 'ci-builder.sh'.
+
+Usage: ./docker/hooks/helper <branch> <blend> <command>
+
+<branch>    := (any|dev|(or see 'env.rc'))
+<blend>     (any|(or see 'env.rc'))
+<command>   := (help|--help|-h)
+            (list-target|list-build-target|list-deploy-target)
+            (pull|pull-deploy-target|pull-build-target)
+```
+
+### Example
+
+This is how you would update the deployment gists of the building group `pivotal` using the "historical" data from the previously published images.
+
+```shell
+### Step 1: Pull the previously published images
+debian-vnc-xfce-g3> ./ci-builder.sh pull group pivotal
+
+### Step 2: Update the gists
+debian-vnc-xfce-g3> ./ci-builder.sh update-gists group pivotal
+```
+
+If you don't want to use the "historical" data, but to build and publish fresh images, then you would do the following:
+
+```shell
+### Step 1: build fresh new images and publish them and update their deployment gists
+debian-vnc-xfce-g3> ./ci-builder.sh all group pivotal
+```
 
 ***
 
