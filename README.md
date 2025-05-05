@@ -12,7 +12,6 @@ Version: G3v8
 ![badge-github-release-date][badge-github-release-date]
 ![badge-github-open-issues][badge-github-open-issues]
 ![badge-github-closed-issues][badge-github-closed-issues]
-![badge-github-releases][badge-github-releases]
 ![badge-github-commits][badge-github-commits]
 ![badge-github-last-commit][badge-github-last-commit]
 ![badge-github-stars][badge-github-stars]
@@ -230,22 +229,20 @@ Credit goes to all the countless people and companies, who contribute to open so
 [tigervnc]: http://tigervnc.org
 [xfce]: http://www.xfce.org
 
-[badge-github-release]: https://badgen.net/github/release/accetto/debian-vnc-xfce-g3?icon=github&label=release
+[badge-github-release]: https://img.shields.io/github/v/release/accetto/debian-vnc-xfce-g3
 
 [badge-github-release-date]: https://img.shields.io/github/release-date/accetto/debian-vnc-xfce-g3?logo=github
 
-[badge-github-stars]: https://badgen.net/github/stars/accetto/debian-vnc-xfce-g3?icon=github&label=stars
+[badge-github-stars]: https://img.shields.io/github/stars/accetto/debian-vnc-xfce-g3?style=flat
 
-[badge-github-forks]: https://badgen.net/github/forks/accetto/debian-vnc-xfce-g3?icon=github&label=forks
+[badge-github-forks]: https://img.shields.io/github/forks/accetto/debian-vnc-xfce-g3?style=flat
 
-[badge-github-releases]: https://badgen.net/github/releases/accetto/debian-vnc-xfce-g3?icon=github&label=releases
+[badge-github-commits]: https://img.shields.io/github/commit-activity/t/accetto/debian-vnc-xfce-g3
 
-[badge-github-commits]: https://badgen.net/github/commits/accetto/debian-vnc-xfce-g3?icon=github&label=commits
+[badge-github-last-commit]: https://img.shields.io/github/last-commit/accetto/debian-vnc-xfce-g3
 
-[badge-github-last-commit]: https://badgen.net/github/last-commit/accetto/debian-vnc-xfce-g3?icon=github&label=last%20commit
+[badge-github-closed-issues]: https://img.shields.io/github/issues-closed/accetto/debian-vnc-xfce-g3
 
-[badge-github-closed-issues]: https://badgen.net/github/closed-issues/accetto/debian-vnc-xfce-g3?icon=github&label=closed%20issues
-
-[badge-github-open-issues]: https://badgen.net/github/open-issues/accetto/debian-vnc-xfce-g3?icon=github&label=open%20issues
+[badge-github-open-issues]: https://img.shields.io/github/issues/accetto/debian-vnc-xfce-g3
 
 [service-shields-io]: https://shields.io/
