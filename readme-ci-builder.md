@@ -458,7 +458,7 @@ For example:
 ### would update all deployment gists belonging to the above images
 debian-vnc-xfce-g3> ./ci-builder.sh update-gists group complete-latest
 
-### extract from the output
+### excerpt from the output
 Missing builder image 'accetto/headless-debian-g3:latest'.
 Getting badge values from deployment image 'accetto/headless-debian-g3:latest'.
 Wait... generating current verbose sticker file './docker/scrap-version_sticker-verbose_current.tmp'

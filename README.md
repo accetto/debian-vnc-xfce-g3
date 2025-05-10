@@ -134,6 +134,7 @@ The version `G3v5` has brought only one significant change comparing to the prev
 
 - The updated script `set_user_permissions.sh`, which is part of Dockerfiles, skips the hidden files and directories now.
 It generally should not have any unwanted side effects, but it may make a difference in some scenarios, hence the version increase.
+
 *Remark*: The version numbers `G3v4`, `G3v3` and `G3v2` have been skipped, to align the numbering with the **sibling project** [accetto/ubuntu-vnc-xfce-g3][accetto-github-ubuntu-vnc-xfce-g3].
 
 Please refer to the [sibling project][accetto-github-ubuntu-vnc-xfce-g3_project-versions] to learn more about the older project versions.

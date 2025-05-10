@@ -85,6 +85,7 @@ main() {
         \
         -t "${helper_image}" "${_build_context}"
 
+
     exit_code=$?
     set +x
 

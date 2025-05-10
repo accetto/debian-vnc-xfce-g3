@@ -24,6 +24,7 @@ deployment_push() {
                 target="${_deploy_repo}:${t}"
 
                 echo ; echo "Deploying image '${target}'"
+
                 docker tag "${DOCKER_REPO}:${keeper_repo_tag}" "${target}"
                 docker push "${target}"
                 exit_code=$?
