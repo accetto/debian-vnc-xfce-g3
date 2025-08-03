@@ -6,6 +6,16 @@
 
 ***
 
+### Release 25.08
+
+The way the `Firefox Browser` is installed has been changed, following the [official Mozilla recommendations](https://support.mozilla.org/en-US/kb/install-firefox-linux?as=u&utm_source=inproduct).
+
+The warning `Some of Firefox's security features may offer less protection on your current operation system` should not come any more.
+
+Updated versions:
+
+- `Firefox` to version **140.1.0esr**
+
 ### Release 25.05.1
 
 This is a maintenance release.
