@@ -52,7 +52,7 @@ The main features and components of the images in the default configuration are:
 - current version of [tini][tini] as the entry-point initial process (PID 1)
 - support for overriding environment variables, VNC parameters, user and group (see [User guide][this-user-guide-using-containers])
 - support of **version sticker** (see [User guide][this-user-guide-version-sticker])
-- current version of [Firefox ESR (Extended Support Release)][firefox] web browser and also the additional **Firefox plus** feature (see [User guide][this-user-guide-firefox-plus])
+- current version of [Firefox ESR (Extended Support Release)][firefox] web browser from the official Mozilla repository and also the additional **Firefox plus** feature (see [User guide][this-user-guide-firefox-plus])
 
 The following **TCP** ports are exposed by default:
 
