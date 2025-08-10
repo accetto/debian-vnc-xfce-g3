@@ -46,6 +46,7 @@ The content of this GitHub project is intended for developers and image builders
 Ordinary users can simply use the images available in the following repositories on Docker Hub:
 
 - [accetto/debian-vnc-xfce-g3][accetto-docker-debian-vnc-xfce-g3]
+- [accetto/debian-vnc-xfce-brave-g3][accetto-docker-debian-vnc-xfce-brave-g3]
 - [accetto/debian-vnc-xfce-chromium-g3][accetto-docker-debian-vnc-xfce-chromium-g3]
 - [accetto/debian-vnc-xfce-firefox-g3][accetto-docker-debian-vnc-xfce-firefox-g3]
 
@@ -69,6 +70,7 @@ The resources for building the individual images and their variations (tags) are
 The individual README files contain quick examples of building the images:
 
 - [accetto/debian-vnc-xfce-g3][this-readme-debian-vnc-xfce-g3]
+- [accetto/debian-vnc-xfce-brave-g3][this-readme-debian-vnc-xfce-brave-g3]
 - [accetto/debian-vnc-xfce-chromium-g3][this-readme-debian-vnc-xfce-chromium-g3]
 - [accetto/debian-vnc-xfce-firefox-g3][this-readme-debian-vnc-xfce-firefox-g3]
 
@@ -183,6 +185,8 @@ Credit goes to all the countless people and companies, who contribute to open so
 
 [this-readme-debian-vnc-xfce-g3]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce/README.md
 
+[this-readme-debian-vnc-xfce-brave-g3]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce-brave/README.md
+
 [this-readme-debian-vnc-xfce-chromium-g3]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce-chromium/README.md
 
 [this-readme-debian-vnc-xfce-firefox-g3]: https://github.com/accetto/debian-vnc-xfce-g3/tree/master/docker/xfce-firefox
@@ -198,6 +202,8 @@ Credit goes to all the countless people and companies, who contribute to open so
 [this-readme-util-readme-examples]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/utils/readme-util-readme-examples.md
 
 [accetto-docker-debian-vnc-xfce-g3]: https://hub.docker.com/r/accetto/debian-vnc-xfce-g3
+
+[accetto-docker-debian-vnc-xfce-brave-g3]: https://hub.docker.com/r/accetto/debian-vnc-xfce-brave-g3
 
 [accetto-docker-debian-vnc-xfce-chromium-g3]: https://hub.docker.com/r/accetto/debian-vnc-xfce-chromium-g3
 
