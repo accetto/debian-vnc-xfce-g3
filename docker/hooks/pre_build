@@ -78,6 +78,7 @@ main() {
         ${FEATURES_NOVNC:+--build-arg ARG_WEBSOCKIFY_VERSION=${WEBSOCKIFY_VERSION}} \
         ${FEATURES_NOVNC:+--build-arg ARG_MERGE_STAGE_VNC_BASE="stage_novnc"} \
         \
+        ${FEATURES_BRAVE:+--build-arg ARG_MERGE_STAGE_BROWSER_BASE="stage_brave"} \
         ${FEATURES_CHROMIUM:+--build-arg ARG_MERGE_STAGE_BROWSER_BASE="stage_chromium"} \
         \
         ${FEATURES_FIREFOX:+--build-arg ARG_MERGE_STAGE_BROWSER_BASE="stage_firefox"} \

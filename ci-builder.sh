@@ -100,9 +100,9 @@ Usage: <script> <mode> <argument> [<optional-argument>]...
                   |(pull|update-gists|list|helper-help)
 <mode>         := (group|family)
 <blend>        := pivotal
-                  |(complete[-latest|-bookworm|-bullseye|-12|-11|-chromium|-firefox])
-                  |(latest|bookworm|bullseye|12|11[-chromium|-firefox])
-<parent-blend> := (complete)|(latest|bookworm|bullseye|12|11[-chromium|-firefox])
+                  |(complete[-latest|-bookworm|-bullseye|-12|-11|-brave|-chromium|-firefox])
+                  |(latest|bookworm|bullseye|12|11[-brave|-chromium|-firefox])
+<parent-blend> := (complete)|(latest|bookworm|bullseye|12|11[-brave|-chromium|-firefox])
 <child-suffix> := depends on context, e.g. '-ver1|-ver2' (currently none supported)
 
 Group mode : All images are processed independently.
@@ -307,31 +307,37 @@ main() {
             pivotal)
 
                 clear_log
-                build_group "${command}" "latest" "bullseye" "latest-firefox" "bullseye-firefox" "latest-chromium" "bullseye-chromium"
+                build_group "${command}" "latest" "bullseye" "latest-firefox" "bullseye-firefox" "latest-brave" "latest-chromium" "bullseye-brave" "bullseye-chromium"
                 ;;
 
             complete)
 
                 clear_log
-                build_group "${command}" "latest" "bullseye" "latest-firefox" "bullseye-firefox" "latest-chromium" "bullseye-chromium"
+                build_group "${command}" "latest" "bullseye" "latest-firefox" "bullseye-firefox" "latest-brave" "latest-chromium" "bullseye-brave" "bullseye-chromium"
                 ;;
 
             complete-latest | complete-12)
 
                 clear_log
-                build_group "${command}" "latest" "latest-firefox" "latest-chromium"
+                build_group "${command}" "latest" "latest-firefox" "latest-brave" "latest-chromium"
                 ;;
 
             complete-bookworm)
 
                 clear_log
-                build_group "${command}" "bookworm" "bookworm-firefox" "bookworm-chromium"
+                build_group "${command}" "bookworm" "bookworm-firefox" "bookworm-brave" "bookworm-chromium"
                 ;;
 
             complete-bullseye | complete-11)
 
                 clear_log
-                build_group "${command}" "bullseye" "bullseye-firefox" "bullseye-chromium"
+                build_group "${command}" "bullseye" "bullseye-firefox" "bullseye-brave" "bullseye-chromium"
+                ;;
+
+            complete-brave)
+
+                clear_log
+                build_group "${command}" "latest-brave" "bullseye-brave"
                 ;;
 
             complete-chromium)
@@ -346,11 +352,11 @@ main() {
                 build_group "${command}" "latest-firefox" "bullseye-firefox"
                 ;;
 
-            latest | latest-chromium | latest-firefox | \
-                bookworm | bookworm-chromium | bookworm-firefox | \
+            latest | latest-brave | latest-chromium | latest-firefox | \
+                bookworm | bookworm-brave | bookworm-chromium | bookworm-firefox | \
                 bullseye | bullseye-chromium | bullseye-firefox | \
-                12 | 12-chromium | 12-firefox | \
-                11 | 11-chromium | 11-firefox )
+                12 | 12-brave | 12-chromium | 12-firefox | \
+                11 | 11-brave | 11-chromium | 11-firefox )
 
                 clear_log
                 build_group "${command}" "${subject}" $@
@@ -382,14 +388,15 @@ main() {
 
                 build_family "${command}" "latest"
                 build_family "${command}" "latest-firefox"
+                build_family "${command}" "latest-brave"
                 build_family "${command}" "latest-chromium"
                 ;;
 
-            latest | latest-chromium | latest-firefox | \
-            bookworm | bookworm-chromium | bookworm-firefox | \
+            latest | latest-brave | latest-chromium | latest-firefox | \
+            bookworm | bookworm-brave | bookworm-chromium | bookworm-firefox | \
             bullseye | bullseye-chromium | bullseye-firefox | \
-            12 | 12-chromium | 12-firefox | \
-            11 | 11-chromium | 11-firefox )
+            12 | 12-brave | 12-chromium | 12-firefox | \
+            11 | 11-brave | 11-chromium | 11-firefox )
 
                 clear_log
                 build_family "${command}" "${subject}" $@

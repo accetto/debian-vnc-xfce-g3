@@ -4,6 +4,7 @@
 _current_dir="$(dirname "$(readlink -f "$0")")"
 
 debian=$("${_current_dir}/version_of.sh" debian)
+brave=$("${STARTUPDIR}/version_of.sh" brave)
 chromium=$("${STARTUPDIR}/version_of.sh" chromium)
 firefox=$("${STARTUPDIR}/version_of.sh" firefox)
 
@@ -36,12 +37,14 @@ main() {
                     ;;
 
                 -v )
+                    if [[ -n "${brave}" ]] ; then echo "Brave ${brave}" ; fi
                     if [[ -n "${chromium}" ]] ; then echo "Chromium ${chromium}" ; fi
                     if [[ -n "${firefox}" ]] ; then echo "Firefox ${firefox}" ; fi
                     echo "Debian ${debian}"
                     ;;
 
                 -V )
+                    if [[ -n "${brave}" ]] ; then echo "Brave ${brave}" ; fi
                     if [[ -n "${chromium}" ]] ; then echo "Chromium ${chromium}" ; fi
 
                     # version=$("${_current_dir}/version_of.sh" dconf-editor)
@@ -84,7 +87,11 @@ main() {
     else
         sticker="debian${debian}"
 
-        if [[ -n "${chromium}" ]] ; then
+        if [[ -n "${brave}" ]] ; then
+
+            sticker="${sticker}-brave${brave}"
+
+        elif [[ -n "${chromium}" ]] ; then
 
             sticker="${sticker}-chromium${chromium}"
 

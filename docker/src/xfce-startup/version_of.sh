@@ -7,6 +7,10 @@ case "$1" in
         ### source example: Angular CLI: 8.3.2
         echo $(ng --version 2>/dev/null | grep -Po -m1 '(?<=Angular CLI:\s)[0-9.]+')
         ;;
+    brave | brave-browser)
+        ### source example: Brave Browser 139.1.81.131 built on Debian 12.1, running on Debian 12.1
+        echo $(brave-browser --version 2>/dev/null | grep -Po -m1 '(?<=Browser\s)[0-9.]+')
+        ;;
     chromium | chromium-browser)
         ### source example: Chromium 115.0.5790.170 built on Debian 12.1, running on Debian 12.1
         echo $(chromium --version 2>/dev/null | grep -Po -m1 '(?<=Chromium\s)[0-9.]+')

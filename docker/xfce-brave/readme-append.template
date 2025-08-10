@@ -1,0 +1,18 @@
+<!-- This is the template of the file to append to the main part of README file for Docker Hub. -->
+<!-- The following variables will be replaced (related to the deployment repository): OWNER, GIST, REPO -->
+
+<!-- latest -->
+
+[badge_latest_created]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@latest@created.json
+
+[badge_latest_version-sticker]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@latest@version-sticker.json
+
+[link_latest_version-sticker-verbose]: https://gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@latest@version-sticker-verbose.txt
+
+<!-- 11 -->
+
+[badge_11_created]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@11@created.json
+
+[badge_11_version-sticker]: https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@11@version-sticker.json
+
+[link_11_version-sticker-verbose]: https://gist.githubusercontent.com/${OWNER}/${GIST}/raw/${REPO}@11@version-sticker-verbose.txt
