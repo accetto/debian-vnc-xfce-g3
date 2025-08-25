@@ -33,10 +33,10 @@ This script can:
 
 Usage: ./builder.sh <blend> <command> [<docker-cli-options>]
 
-blend   := (latest|bookworm|bullseye|12|11)[-chromium|-firefox])
+blend   := (latest|trixie|bookworm|bullseye|13|12|11)[-brave|-chromium|-firefox])
 command := (all|all-no-push)|(pre_build|build|push|post_push|cache)
 
-The <docker-cli-options> (e.g. '--no-cache') are passed to the Docker CLI commands used internally.
+The <docker-cli-options> (e.g. '--no-cache' or '--target') are passed to the Docker CLI commands used internally.
 
 The script creates a complete execution log.
 ```

@@ -6,6 +6,13 @@
 
 ***
 
+### Release 25.08.2 (Milestone)
+
+This release brings new images based on the current **Debian 13**.
+The images based on the previous **Debian 12** and **Debian 11** will still be published into the same repositories.
+
+Please note that the container screenshots in the README files for the Docker Hub are not updated yet.
+
 ### Release 25.08.1
 
 This release brings new images with the open-source [Brave Browser][brave], which is based on the open-source [Chromium Browser][chromium] and includes a built-in private AI assistant.

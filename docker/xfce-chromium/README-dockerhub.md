@@ -13,7 +13,7 @@
 
 This Docker Hub repository contains Docker images for headless working.
 
-The images are based on the current [Debian 12][docker-debian] and the previous [Debian 11][docker-debian] and include [Xfce][xfce] desktop, [TigerVNC][tigervnc] server and [noVNC][novnc] client.
+The images are based on the current [Debian 13][docker-debian] and the previous [Debian 12][docker-debian] and [Debian 11][docker-debian] and include [Xfce][xfce] desktop, [TigerVNC][tigervnc] server and [noVNC][novnc] client.
 The popular web browser [Chromium][chromium] is also included.
 
 This [User guide][this-user-guide] describes the images and how to use them.
@@ -24,10 +24,15 @@ The related [GitHub project][this-github] contains image generators that image u
 
 The following image tags are regularly built and published on Docker Hub:
 
-- `latest` (also as `12`) based on `Debian 12`
+- `latest` (also as `13`) based on `Debian 13`
 
     ![badge_latest_created][badge_latest_created]` `
     [![badge_latest_version-sticker][badge_latest_version-sticker]][link_latest_version-sticker-verbose]
+
+- `12` based on `Debian 12`
+
+    ![badge_12_created][badge_12_created]` `
+    [![badge_12_version-sticker][badge_12_version-sticker]][link_12_version-sticker-verbose]
 
 - `11` based on `Debian 11`
 

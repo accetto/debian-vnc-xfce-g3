@@ -10,6 +10,9 @@ Useful links from **this project's** GitHub repository [accetto/debian-vnc-xfce-
   - [image repository][this-dockerhub-image-base] on Docker Hub
   - [Dockerfile][this-dockerfile] (common for all images) on GitHub
   - [sibling Dockerfile stages diagram][sibling-diagram-dockerfile-stages] on GitHub (common for all images)
+- images with **Brave**
+  - [full Readme][this-readme-image-brave] file on GitHub
+  - [image repository][this-dockerhub-image-brave] on Docker Hub
 - images with **Chromium**
   - [full Readme][this-readme-image-chromium] file on GitHub
   - [image repository][this-dockerhub-image-chromium] on Docker Hub
@@ -28,6 +31,9 @@ Useful links from **this project's** GitHub repository [accetto/debian-vnc-xfce-
 
 [this-dockerhub-image-base]: https://hub.docker.com/r/accetto/debian-vnc-xfce-g3
 [this-readme-image-base]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce/README.md
+
+[this-dockerhub-image-brave]: https://hub.docker.com/r/accetto/debian-vnc-xfce-brave-g3
+[this-readme-image-brave]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce-brave/README.md
 
 [this-dockerhub-image-chromium]: https://hub.docker.com/r/accetto/debian-vnc-xfce-chromium-g3
 [this-readme-image-chromium]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/xfce-chromium/README.md

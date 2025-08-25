@@ -62,9 +62,9 @@ Usage: <script> <mode> <argument> [<optional-argument>]...
                   |(pull|update-gists|list|helper-help)
 <mode>         := (group|family)
 <blend>        := pivotal
-                  |(complete[-latest|-bookworm|-bullseye|-12|-11|-chromium|-firefox])
-                  |(latest|bookworm|bullseye|12|11[-chromium|-firefox])
-<parent-blend> := (complete)|(latest|bookworm|bullseye|12|11[-chromium|-firefox])
+                  |(complete[-latest|-trixie|-bookworm|-bullseye|-13|-12|-11|-brave|-chromium|-firefox])
+                  |(latest|trixie|bookworm|bullseye|13|12|11[-brave|-chromium|-firefox])
+<parent-blend> := (complete)|(latest|trixie|bookworm|bullseye|13|12|11[-brave|-chromium|-firefox])
 <child-suffix> := depends on context, e.g. '-ver1|-ver2' (currently none supported)
 
 Group mode : All images are processed independently.
@@ -275,7 +275,8 @@ The following table illustrates the relations.
 
 | Debian Version | Blend    | Synonym 1 | Synonym 2 |
 | -------------- | -------- | --------- | --------- |
-| 12             | latest   | 12        | bookworm  |
+| 13             | latest   | 13        | trixie    |
+| 12             | bookworm | 12        |           |
 | 11             | bullseye | 11        |           |
 
 For example, the following command line groups are functional equivalents:
@@ -283,13 +284,13 @@ For example, the following command line groups are functional equivalents:
 ```shell
 ### Group 1
 ./ci-builder.sh list group latest
-./ci-builder.sh list group bookworm
-./ci-builder.sh list group 12
+./ci-builder.sh list group trixie
+./ci-builder.sh list group 13
 
 ### Group 2
 ./ci-builder.sh list group complete-latest
-./ci-builder.sh list group complete-bookworm
-./ci-builder.sh list group complete-12
+./ci-builder.sh list group complete-trixie
+./ci-builder.sh list group complete-13
 
 ### Group 3
 ./ci-builder.sh list group bullseye
