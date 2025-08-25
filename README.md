@@ -36,7 +36,7 @@ Version: G3v8
 
 This GitHub repository contains resources and tools for building Docker images for headless working.
 
-The images are based on the current [Debian 12][docker-debian] and the previous [Debian 11][docker-debian] and include [Xfce][xfce] desktop, [TigerVNC][tigervnc] server and [noVNC][novnc] client.
+The images are based on the current [Debian 13][docker-debian] and the previous [Debian 12][docker-debian] and [Debian 11][docker-debian] and they include [Xfce][xfce] desktop, [TigerVNC][tigervnc] server and [noVNC][novnc] client.
 The popular web browsers [Brave][brave], [Chromium][chromium] and [Firefox][firefox] are also included.
 
 This [User guide][this-user-guide] describes the images and how to use them.

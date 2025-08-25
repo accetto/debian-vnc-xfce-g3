@@ -13,7 +13,7 @@
 
 This Docker Hub repository contains Docker images for headless working.
 
-The images are based on the current [Debian 12][docker-debian] and the previous [Debian 11][docker-debian] and include [Xfce][xfce] desktop, [TigerVNC][tigervnc] server and [noVNC][novnc] client.
+The images are based on the current [Debian 13][docker-debian] and the previous [Debian 12][docker-debian] and [Debian 11][docker-debian] and include [Xfce][xfce] desktop, [TigerVNC][tigervnc] server and [noVNC][novnc] client.
 The popular open-source web browser [Brave][brave] with a built-in private AI assistant is also included.
 
 This [User guide][this-user-guide] describes the images and how to use them.
@@ -24,10 +24,15 @@ The related [GitHub project][this-github] contains image generators that image u
 
 The following image tags are regularly built and published on Docker Hub:
 
-- `latest` (also as `12`) based on `Debian 12`
+- `latest` (also as `13`) based on `Debian 13`
 
     ![badge_latest_created][badge_latest_created]` `
     [![badge_latest_version-sticker][badge_latest_version-sticker]][link_latest_version-sticker-verbose]
+
+- `12` based on `Debian 12`
+
+    ![badge_12_created][badge_12_created]` `
+    [![badge_12_version-sticker][badge_12_version-sticker]][link_12_version-sticker-verbose]
 
 - `11` based on `Debian 11`
 
@@ -59,12 +64,12 @@ The following **TCP** ports are exposed by default:
 - **5901** for access over **VNC** (using VNC viewer)
 - **6901** for access over [noVNC][novnc] (using web browser)
 
+<!-- TODO temp disabled link -->
 <!-- ![container-screenshot][this-screenshot-container] -->
 
 ### Remarks
 
-<!-- TODO temp disabled sentence -->
-<!-- There is also a similar sibling image [accetto/ubuntu-vnc-xfce-brave-g3][accetto-dockerhub-ubuntu-vnc-xfce-brave-g3] based on [Ubuntu 22.04 LTS and 20.04 LTS][docker-ubuntu]. -->
+There is also a similar sibling image [accetto/ubuntu-vnc-xfce-brave-g3][accetto-dockerhub-ubuntu-vnc-xfce-brave-g3] based on [Ubuntu 22.04 LTS and 20.04 LTS][docker-ubuntu].
 
 This is the **third generation** (G3) of my headless images.
 The **second generation** (G2) contains the GitHub repository [accetto/xubuntu-vnc-novnc][accetto-github-xubuntu-vnc-novnc].
@@ -102,10 +107,10 @@ If you have a question or an idea and you don't want to open an issue, you can a
 
 [this-dockerfile]: https://github.com/accetto/debian-vnc-xfce-g3/blob/master/docker/Dockerfile.xfce
 
-<!-- TODO two temp disabled links -->
+<!-- TODO temp disabled link -->
 <!-- [this-screenshot-container]: https://raw.githubusercontent.com/accetto/debian-vnc-xfce-g3/master/docker/doc/images/animation-debian-vnc-xfce-brave-g3.gif -->
 
-<!-- [accetto-dockerhub-ubuntu-vnc-xfce-brave-g3]: https://hub.docker.com/r/accetto/ubuntu-vnc-xfce-brave-g3 -->
+[accetto-dockerhub-ubuntu-vnc-xfce-brave-g3]: https://hub.docker.com/r/accetto/ubuntu-vnc-xfce-brave-g3
 
 [sibling-wiki]: https://github.com/accetto/ubuntu-vnc-xfce-g3/wiki
 
@@ -116,7 +121,7 @@ If you have a question or an idea and you don't want to open an issue, you can a
 [accetto-github-ubuntu-vnc-xfce]: https://github.com/accetto/ubuntu-vnc-xfce
 
 [docker-debian]: https://hub.docker.com/_/debian/
-<!-- [docker-ubuntu]: https://hub.docker.com/_/ubuntu/ -->
+[docker-ubuntu]: https://hub.docker.com/_/ubuntu/
 
 [brave]: https://www.brave.com/
 [jq]: https://stedolan.github.io/jq/

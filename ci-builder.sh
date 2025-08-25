@@ -100,9 +100,9 @@ Usage: <script> <mode> <argument> [<optional-argument>]...
                   |(pull|update-gists|list|helper-help)
 <mode>         := (group|family)
 <blend>        := pivotal
-                  |(complete[-latest|-bookworm|-bullseye|-12|-11|-brave|-chromium|-firefox])
-                  |(latest|bookworm|bullseye|12|11[-brave|-chromium|-firefox])
-<parent-blend> := (complete)|(latest|bookworm|bullseye|12|11[-brave|-chromium|-firefox])
+                  |(complete[-latest|-trixie|-bookworm|-bullseye|-13|-12|-11|-brave|-chromium|-firefox])
+                  |(latest|trixie|bookworm|bullseye|13|12|11[-brave|-chromium|-firefox])
+<parent-blend> := (complete)|(latest|trixie|bookworm|bullseye|13|12|11[-brave|-chromium|-firefox])
 <child-suffix> := depends on context, e.g. '-ver1|-ver2' (currently none supported)
 
 Group mode : All images are processed independently.
@@ -316,12 +316,18 @@ main() {
                 build_group "${command}" "latest" "bullseye" "latest-firefox" "bullseye-firefox" "latest-brave" "latest-chromium" "bullseye-brave" "bullseye-chromium"
                 ;;
 
-            complete-latest | complete-12)
+            complete-latest | complete-13)
 
                 clear_log
                 build_group "${command}" "latest" "latest-firefox" "latest-brave" "latest-chromium"
                 ;;
 
+            complete-trixie)
+
+                clear_log
+                build_group "${command}" "trixie" "trixie-firefox" "trixie-brave" "trixie-chromium"
+                ;;
+            
             complete-bookworm)
 
                 clear_log
@@ -353,8 +359,10 @@ main() {
                 ;;
 
             latest | latest-brave | latest-chromium | latest-firefox | \
+                trixie | trixie-brave | trixie-chromium | trixie-firefox | \
                 bookworm | bookworm-brave | bookworm-chromium | bookworm-firefox | \
                 bullseye | bullseye-chromium | bullseye-firefox | \
+                13 | 13-brave | 13-chromium | 13-firefox | \
                 12 | 12-brave | 12-chromium | 12-firefox | \
                 11 | 11-brave | 11-chromium | 11-firefox )
 
@@ -393,8 +401,10 @@ main() {
                 ;;
 
             latest | latest-brave | latest-chromium | latest-firefox | \
+            trixie | trixie-brave | trixie-chromium | trixie-firefox | \
             bookworm | bookworm-brave | bookworm-chromium | bookworm-firefox | \
             bullseye | bullseye-chromium | bullseye-firefox | \
+            13 | 13-brave | 13-chromium | 13-firefox | \
             12 | 12-brave | 12-chromium | 12-firefox | \
             11 | 11-brave | 11-chromium | 11-firefox )
 
