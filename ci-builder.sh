@@ -361,7 +361,7 @@ main() {
             latest | latest-brave | latest-chromium | latest-firefox | \
                 trixie | trixie-brave | trixie-chromium | trixie-firefox | \
                 bookworm | bookworm-brave | bookworm-chromium | bookworm-firefox | \
-                bullseye | bullseye-chromium | bullseye-firefox | \
+                bullseye | bullseye-brave | bullseye-chromium | bullseye-firefox | \
                 13 | 13-brave | 13-chromium | 13-firefox | \
                 12 | 12-brave | 12-chromium | 12-firefox | \
                 11 | 11-brave | 11-chromium | 11-firefox )
