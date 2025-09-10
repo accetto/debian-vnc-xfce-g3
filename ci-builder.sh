@@ -307,13 +307,19 @@ main() {
             pivotal)
 
                 clear_log
-                build_group "${command}" "latest" "bullseye" "latest-firefox" "bullseye-firefox" "latest-brave" "latest-chromium" "bullseye-brave" "bullseye-chromium"
+                build_group "${command}" "latest" "bookworm" "bullseye" \
+                    "latest-firefox" "bookworm-firefox" "bullseye-firefox" \
+                    "latest-brave" "bookworm-brave" "bullseye-brave" \
+                    "latest-chromium" "bookworm-chromium" "bullseye-chromium"
                 ;;
 
             complete)
 
                 clear_log
-                build_group "${command}" "latest" "bullseye" "latest-firefox" "bullseye-firefox" "latest-brave" "latest-chromium" "bullseye-brave" "bullseye-chromium"
+                build_group "${command}" "latest" "bookworm" "bullseye" \
+                    "latest-firefox" "bookworm-firefox" "bullseye-firefox" \
+                    "latest-brave" "bookworm-brave" "bullseye-brave" \
+                    "latest-chromium" "bookworm-chromium" "bullseye-chromium"
                 ;;
 
             complete-latest | complete-13)
@@ -343,19 +349,19 @@ main() {
             complete-brave)
 
                 clear_log
-                build_group "${command}" "latest-brave" "bullseye-brave"
+                build_group "${command}" "latest-brave" "bookworm-brave" "bullseye-brave"
                 ;;
 
             complete-chromium)
 
                 clear_log
-                build_group "${command}" "latest-chromium" "bullseye-chromium"
+                build_group "${command}" "latest-chromium" "bookworm-chromium" "bullseye-chromium"
                 ;;
 
             complete-firefox)
 
                 clear_log
-                build_group "${command}" "latest-firefox" "bullseye-firefox"
+                build_group "${command}" "bookworm-firefox" "latest-firefox" "bullseye-firefox"
                 ;;
 
             latest | latest-brave | latest-chromium | latest-firefox | \
