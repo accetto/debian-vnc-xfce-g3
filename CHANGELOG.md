@@ -6,6 +6,16 @@
 
 ***
 
+### Release 26.04
+
+This is a maintenance release.
+
+Updated versions:
+
+- `TigerVNC` to version **1.16.2**
+  - only in images based on `Debian 13` (Trixie) and `Debian 12` (Bookworm)
+  - avoid using an empty VNC password (environment variable `VNC_PW`) with this version
+
 ### Release 25.08.2 (Milestone)
 
 This release brings new images based on the current **Debian 13**.
