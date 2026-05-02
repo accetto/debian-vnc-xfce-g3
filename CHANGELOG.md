@@ -6,6 +6,20 @@
 
 ***
 
+### Release 26.05
+
+This is a maintenance release. Most of the updates are related to the `TigerVNC v1.16.2`, which has been introduced in the previous release.
+
+Updated files:
+
+- `vnc_startup.rc`
+  - The `TigerVNC 1.16.2` has deprecated the folder `$HOME/.vnc` and the new path for the configuration files (`config`, `passwd`) is now `$HOME/.config/tigervnc`
+    - This does not apply to the images based on the `Debian 11` that do not work with the `TigerVNC 1.16.2` and therefore still include the `TigerVNC 1.13.1`.
+  - a new variable `VNC_CONFIG_HOME` is used for configuring the correct path for the VNC configuration files
+
+- `Dockerfile.xfce.13`, `Dockerfile.xfce.12` and `Dockerfile.xfce.11`
+  - The standard Linux help viewer `man` has been added (at `stage_tools`).
+
 ### Release 26.04
 
 This is a maintenance release.

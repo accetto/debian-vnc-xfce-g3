@@ -33,15 +33,15 @@ start_vnc () {
     || -z "${VNC_RESOLUTION}" ]] ; then
 
         # cleanup "ERROR: Not all required environment variables are set: DISPLAY, VNC_PORT, VNC_PW, VNC_COL_DEPTH, VNC_RESOLUTION"
-        cleanup "ERROR: Not all required environment variables are set: DISPLAY, VNC_PORT, VNC_COL_DEPTH, VNC_RESOLUTION"
+        cleanup "ERROR: Not all required environment variables are set: DISPLAY, VNC_PORT, VNC_COL_DEPTH, VNC_RESOLUTION, VNC_CONFIG_HOME"
+    fi
+    
+    if [[ ! -d "${VNC_CONFIG_HOME}" ]] ; then
+    
+        mkdir "${VNC_CONFIG_HOME}"
     fi
 
-    passwd_path="${HOME}"/.vnc/passwd
-    
-    if [[ ! -d "${HOME}"/.vnc ]] ; then
-    
-        mkdir "${HOME}"/.vnc
-    fi
+    passwd_path="${VNC_CONFIG_HOME}"/passwd
 
     if [[ "${VNC_VIEW_ONLY,,}" == "true" ]] ; then
     
@@ -58,11 +58,11 @@ start_vnc () {
     chmod 600 "${passwd_path}"
 
     ### create VNC configuration file
-    echo "
-    rfbport=${VNC_PORT}
-    depth=${VNC_COL_DEPTH}
-    geometry=${VNC_RESOLUTION}
-    " > "${HOME}"/.vnc/config
+    echo \
+"rfbport=${VNC_PORT}
+depth=${VNC_COL_DEPTH}
+geometry=${VNC_RESOLUTION}" \
+> "${VNC_CONFIG_HOME}"/config
 
     ### get container IP address
     vnc_ip=$(hostname -i)
