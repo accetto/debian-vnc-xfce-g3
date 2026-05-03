@@ -209,6 +209,7 @@ update_gist() {
     ### required 'GIST_TOKEN' (PAT) scope is 'gist'
 
     for attempt in $(seq 1 ${max_retries}); do
+
         echo "Attempt ${attempt} of ${max_retries}..."
 
         result=$(curl -s \
@@ -230,5 +231,14 @@ update_gist() {
     done
 
     echo "ERROR: Gist update failed after ${max_retries} attempts."
+
+    ### just for debugging - retry and report the response message (e.g. 'API rate limit exceeded')
+    # echo $(curl -s \
+    #     -X PATCH \
+    #     -H "Authorization: token ${GIST_TOKEN}" \
+    #     -H "Accept: application/vnd.github.v3+json" \
+    #     https://api.github.com/gists/${gist} \
+    #     -d "${data}")
+
     return 1
 }

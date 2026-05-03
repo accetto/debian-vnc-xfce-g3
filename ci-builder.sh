@@ -334,7 +334,7 @@ main() {
                 build_group "${command}" "trixie" "trixie-firefox" "trixie-brave" "trixie-chromium"
                 ;;
             
-            complete-bookworm)
+            complete-bookworm | complete-12)
 
                 clear_log
                 build_group "${command}" "bookworm" "bookworm-firefox" "bookworm-brave" "bookworm-chromium"
@@ -361,7 +361,7 @@ main() {
             complete-firefox)
 
                 clear_log
-                build_group "${command}" "bookworm-firefox" "latest-firefox" "bullseye-firefox"
+                build_group "${command}" "latest-firefox" "bookworm-firefox" "bullseye-firefox"
                 ;;
 
             latest | latest-brave | latest-chromium | latest-firefox | \

@@ -6,6 +6,12 @@
 
 ***
 
+### Release 26.05.1
+
+This is a maintenance release.
+
+Fixed the [Issue #2](https://github.com/accetto/debian-vnc-xfce-g3/issues/2) `Publishing the 'latest' images overwrites also the '12' ones`.
+
 ### Release 26.05
 
 This is a maintenance release. Most of the updates are related to the `TigerVNC v1.16.2`, which has been introduced in the previous release.
