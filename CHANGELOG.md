@@ -6,6 +6,23 @@
 
 ***
 
+### Release 26.05.2
+
+This is a maintenance release.
+
+Updated files:
+
+- `vnc_startup.rc`
+  - All required environment variables are validated individually one-by-one. There are listed in the array `required_vars`.
+
+  - An empty VNC password is not working any more and therefore a non-empty one is enforced. Do not set the environment variable `VNC_PW` to an empty string!
+    - Note that you can provide the password also
+      - as part of the connection string if you're using a WebBrowser and `noVNC`
+        - example: `http://localhost:36901/vnc_lite.html?password=headless`
+      - via the command line parameter `-PasswordFile` if you're using the `TigerVNCViewer`
+        - example: `vncviewer64.exe" -PasswordFile my.pass :35901`
+        - you'll need to generate the `my.pass` file using the `vncpasswd` utility
+
 ### Release 26.05.1
 
 This is a maintenance release.
