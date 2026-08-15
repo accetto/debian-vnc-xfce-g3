@@ -6,6 +6,15 @@
 
 ***
 
+### Release 26.08
+
+Improvements:
+
+- `ci-builder.sh` has got a new command `log get deploy` for extracting the beginnings of all deployments (pushes) from the log file
+  - Usage example: `./ci-builder.sh log get deploy`
+- `hooks/release_of` now saves an unexpected `curl` response into the file `scrap-release_of-failed.tmp`, which will be deleted before beginning a new image build
+- Mozilla has changed the `Firefox` profile root path from `${HOME}/.mozilla/firefox` to `${HOME}/.config/mozilla/firefox`. The updated script `copy_firefox_user_preferences.sh` handles both paths now.
+
 ### Release 26.05.2
 
 This is a maintenance release.

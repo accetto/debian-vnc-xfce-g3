@@ -3,7 +3,7 @@
 main() {
     local result=""
     local response=""
-    local truncateMax=1000
+    local curl_output="scrap-release_of-failed.tmp"
 
     case "$1" in
 
@@ -21,9 +21,9 @@ main() {
         echo "${result}"
     else
         echo "ERROR: Exiting '${0}' with code '1' because unable to get version of '$1'"
-        echo "ERROR: Unexpected HTTPS response (truncated to $truncateMax):"
-        ### don't use quotes here
-        echo ${response:0:truncateMax}
+        echo "ERROR: Unexpected HTTPS response (see '${curl_output}')"
+        ### save to file
+        echo "${response}" > "../${curl_output}"
         return 1
     fi
 }
