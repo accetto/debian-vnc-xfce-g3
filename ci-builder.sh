@@ -463,7 +463,7 @@ declare _ci_builder_log="scrap_ci-builder.log"
 
 declare _log_mark="\n[CI-BUILDER]"
 
-declare _regex_log_deploy="Deploying image "
+declare _regex_log_deploy="\bDeploying image\b|\bPushing builder image\b"
 declare _regex_log_digest="(?<=\[CI-BUILDER\] ).+"
 declare _regex_log_errors="\berror\b|\bwarning\b|\bexiting at line\b"
 declare _regex_log_stickers="Current version sticker of "

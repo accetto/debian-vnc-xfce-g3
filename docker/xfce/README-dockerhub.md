@@ -23,17 +23,17 @@ The related [GitHub project][this-github] contains image generators that image u
 
 The following image tags are regularly built and published on Docker Hub:
 
-- `latest` (also as `13`) based on `Debian 13`
+- `latest` (also as `13` or `trixie`) based on `Debian 13`
 
     ![badge_latest_created][badge_latest_created]` `
     [![badge_latest_version-sticker][badge_latest_version-sticker]][link_latest_version-sticker-verbose]
 
-- `12` based on `Debian 12`
+- `12` based on `Debian 12` (also as `bookworm`)
 
     ![badge_12_created][badge_12_created]` `
     [![badge_12_version-sticker][badge_12_version-sticker]][link_12_version-sticker-verbose]
 
-- `11` based on `Debian 11`
+- `11` based on `Debian 11` (also as `bullseye`)
 
     ![badge_11_created][badge_11_created]` `
     [![badge_11_version-sticker][badge_11_version-sticker]][link_11_version-sticker-verbose]

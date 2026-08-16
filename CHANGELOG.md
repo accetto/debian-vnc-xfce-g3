@@ -6,6 +6,22 @@
 
 ***
 
+### Release 26.08.1
+
+This is a maintenance release.
+
+Updated files:
+
+- script `ci-builder.sh` - the new command `log get deploy` recognizes also pushing of builder images (when `FORCE_PUBLISHING_BUILDER_REPO=1`)
+- script `copy_firefox_user_preferences.sh` - uses absolute paths to Firefox profiles because the relative ones did not work correctly in `Debian 11 (bullseye)`
+- minor updates in README files for DockerHub
+
+Updated versions:
+
+- `noVNC` to version **1.7.0**
+  - images based on `Debian 13` (`trixie`), `Debian 12` (`bookworm`), `Debian 11` (`bullseye`)
+- `Debian 12` to version **12.15**
+
 ### Release 26.08
 
 Improvements:
@@ -59,7 +75,7 @@ This is a maintenance release.
 Updated versions:
 
 - `TigerVNC` to version **1.16.2**
-  - only in images based on `Debian 13` (Trixie) and `Debian 12` (Bookworm)
+  - only in images based on `Debian 13` (`trixie`) and `Debian 12` (`bookworm`)
   - avoid using an empty VNC password (environment variable `VNC_PW`) with this version
 
 ### Release 25.08.2 (Milestone)
@@ -95,7 +111,7 @@ This is a maintenance release.
 Updated versions:
 
 - `TigerVNC` to version **1.15.0**
-  - only in images based on `Debian 12` (Bookworm)
+  - only in images based on `Debian 12` (`bookworm`)
   - avoid using an empty VNC password (environment variable `VNC_PW`) with this version
 
 ### Release 25.05 (G3v8)
