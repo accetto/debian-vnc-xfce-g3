@@ -6,6 +6,15 @@
 
 ***
 
+### Release 26.08.2
+
+This is a maintenance release.
+
+Updated files:
+
+- Script `docker/hooks/release_of` has been updated. Now it logs the unexpected `curl` responses into the file `docker/scrap_release_of.log`, which will be cleared by the script `builder.sh` whenever the builder log is cleared. The file is always created and it can be empty if there have been no failures.
+  - Remark: The `release_of` in this project is actually an "empty" script for future use. Nevertheless, I prefer to keep the implementation synchronized with the sibling project [accetto/headless-coding-g3][accetto-headless-coding-g3].
+
 ### Release 26.08.1
 
 This is a maintenance release.
@@ -377,6 +386,8 @@ The initial version of the project has been derived from the sibling project [ac
 [this-github]: https://github.com/accetto/debian-vnc-xfce-g3/
 
 [accetto-github-ubuntu-vnc-xfce-g3]: https://github.com/accetto/ubuntu-vnc-xfce-g3
+
+[accetto-headless-coding-g3]: https://github.com/accetto/headless-coding-g3
 
 [sibling-wiki]: https://github.com/accetto/ubuntu-vnc-xfce-g3/wiki
 
