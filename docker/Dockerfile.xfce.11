@@ -1,5 +1,6 @@
 ARG BASEIMAGE=debian
 ARG BASETAG=11-slim
+ARG DEBIAN_SNAPSHOT=20260824T000000Z
 
 ARG ARG_MERGE_STAGE_VNC_BASE=stage_vnc
 ARG ARG_MERGE_STAGE_BROWSER_BASE=merge_stage_vnc
@@ -19,10 +20,9 @@ ARG ARG_HOME=/home/headless
 
 FROM ${BASEIMAGE}:${BASETAG} AS stage_cache
 
-### refresh the 'apt' cache
+### configure the 'apt' cache
 RUN rm -f /etc/apt/apt.conf.d/docker-clean ; \
     echo 'Binary::apt::APT::Keep-Downloaded-Packages "true" ;' > /etc/apt/apt.conf.d/keep-cache
-RUN apt-get update
 
 ### embed the local '.g3-cache' from the build context
 ### note that the bound cache '/tmp/cache2' is ephemeral and all written data will be discarded automatically
@@ -38,11 +38,22 @@ RUN \
 ####################
 
 FROM ${BASEIMAGE}:${BASETAG} AS stage_essentials
+ARG DEBIAN_SNAPSHOT
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    printf '%s\n' \
+        "deb http://snapshot.debian.org/archive/debian/${DEBIAN_SNAPSHOT} bullseye main" \
+        "deb http://snapshot.debian.org/archive/debian-security/${DEBIAN_SNAPSHOT} bullseye-security main" \
+        "deb http://snapshot.debian.org/archive/debian/${DEBIAN_SNAPSHOT} bullseye-updates main" \
+        > /etc/apt/sources.list \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
+    && DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Check-Valid-Until=false install -y --no-install-recommends ca-certificates \
+    && sed -i 's|http://snapshot.debian.org|https://snapshot.debian.org|g' /etc/apt/sources.list \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
         gettext-base \
         gir1.2-rsvg-2.0 \
         gpg \
@@ -68,8 +79,9 @@ ENV \
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
+    rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
         dbus-x11 \
         xauth \
         xinit \
@@ -88,8 +100,9 @@ ENV FEATURES_BUILD_SLIM_XFCE="${ARG_APT_NO_RECOMMENDS:+1}"
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
+    rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
         xfce4 \
         xfce4-terminal
 
@@ -110,8 +123,9 @@ ENV \
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
+    rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
         man \
         mousepad \
         python3 \
@@ -137,7 +151,6 @@ ARG ARG_TIGERVNC_VERSION
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/tmp/g3-cache/,target=/tmp/g3-cache/ \
     TIGERVNC_VERSION="${ARG_TIGERVNC_VERSION}" \
     TIGERVNC_DISTRO="${ARG_TIGERVNC_DISTRO}" \
@@ -180,9 +193,10 @@ ENV \
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/tmp/g3-cache/,target=/tmp/g3-cache/ \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
+    rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
         python3-numpy \
     &&  mkdir -p "${NOVNC_HOME}"/utils/websockify \
     &&  NOVNC_VERSION="${ARG_NOVNC_VERSION}" \
@@ -260,8 +274,9 @@ ENV \
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
+    rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
         curl
 
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -274,8 +289,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
-    DEBIAN_FRONTEND=noninteractive apt-get update \
+    rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
     && apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
         brave-browser
 
@@ -296,8 +311,9 @@ ENV \
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
+    rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
         chromium
 
 COPY ./xfce-chromium/src/home/Desktop "${HOME}"/Desktop/
@@ -334,8 +350,8 @@ Pin-Priority: 1000" \
 
 RUN \
     --mount=type=cache,from=stage_cache,sharing=locked,source=/var/cache/apt,target=/var/cache/apt \
-    --mount=type=cache,from=stage_cache,sharing=locked,source=/var/lib/apt,target=/var/lib/apt \
-    DEBIAN_FRONTEND=noninteractive apt-get update \
+    rm -rf /var/lib/apt/lists/* \
+    && apt-get -o Acquire::Check-Valid-Until=false update \
     && apt-get install -y "${ARG_APT_NO_RECOMMENDS:+--no-install-recommends}" \
         firefox-esr
         # firefox
