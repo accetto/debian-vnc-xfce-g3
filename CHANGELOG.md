@@ -6,6 +6,43 @@
 
 ***
 
+### Release 26.10 (G3v9)
+
+This is the first `G3v9` release. It brings the following changes.
+
+- It goes around the problem with the current `containerd` and the improved building pipeline, which has been introduced in the release `25.05 (G3v8)`. See also the [feedback-issue-603].
+
+  - Since the *Docker Desktop* option `Use containerd for pulling and storing images` has been introduced some time ago, the command `docker build --cache-from=<local-helper-image-used-as-cache>` ignores the local helper image if the option is enabled.
+  It always tries to pull the cache image from the registry instead of using the local image.
+    - This release uses the local file system for caching the helper images.
+    This option seems to perform better and it is easier to maintain than the other possible option with a local registry.
+      - The path to the local helper cache is configurable via the environment variable `HELPER_IMAGE_CACHE_PATH`.
+        - The variable is expected to be set in the file `hooks/secrets.rc`.
+        - The default local cache path value is `./.buildx-cache`.
+        - The local cache is automatically cleaned during the building.
+
+- It improves usage of the `stage_cache` layers in all Dockerfiles, avoiding possible stale cache data.
+
+- Both builder scripts `builder.sh` and `ci-builder.sh` can now take a new optional build parameter `--pull`, which is passed to the underlying [docker build][docker-build-command] command.
+
+  - Command `docker build --pull` tells Docker to check the registry for a newer version of every base image referenced by `FROM`, even if a local copy already exists.
+  - Benefits:
+    - Incorporates updated base-image patches and security fixes.
+    - Prevents builds from relying only on a possibly stale local base image.
+    - Rebuilds dependent layers when the base image changes.
+    - Does not disable the build cache or pull every dependency used by later commands.
+  - Use it in CI or security-focused rebuilds. For fully reproducible builds, pin the base image by digest instead.
+  - Note the difference in the command line syntax. For example:
+    - `./builder.sh latest build --pull`
+    - `./ci-builder.sh --pull all-no-push group latest`
+
+- It deprecates the images based on `Debian 11 (bullseye)` because of [Debian-11-LTS-end-of-life].
+
+  - You can still build the `Debian 11` images because I've pinned the `Debian Snapshot Version` in the `Dockerfile.xfce.11` (see the build argument `DEBIAN_SNAPSHOT=20260824T000000Z`).
+    - However, keep in mind that
+      - Support for building the `Debian 11` images will be removed from this project in the near future.
+      - The `debian.org` says: "Starting in September, Debian will not provide further security updates for Debian 11. A subset of "bullseye" packages will be supported by external parties."
+
 ### Release 26.08.2
 
 This is a maintenance release.
@@ -399,3 +436,9 @@ The initial version of the project has been derived from the sibling project [ac
 
 [brave]: https://brave.com/
 [chromium]: https://www.chromium.org/Home
+
+[feedback-issue-603]: https://github.com/docker/desktop-feedback/issues/603
+
+[Debian-11-LTS-end-of-life]: https://www.debian.org/News/2026/20260831
+
+[docker-build-command]: https://docs.docker.com/reference/cli/docker/buildx/build/
