@@ -279,6 +279,3 @@ Credit goes to all the countless people and companies, who contribute to open so
 [feedback-issue-603]: https://github.com/docker/desktop-feedback/issues/603
 
 [Debian-11-LTS-end-of-life]: https://www.debian.org/News/2026/20260831
-
-[docker-build-command]: https://docs.docker.com/reference/cli/docker/buildx/build/
-
