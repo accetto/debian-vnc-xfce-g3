@@ -6,6 +6,14 @@
 
 ***
 
+### Release 26.10.1
+
+This is a maintenance release, bringing
+
+- some improvements in the `stage_cache` layers in all Dockerfiles
+- hook scripts `pre_build` and `build` ensure `BuildKit` by using `docker buildx build --load` instead of just `docker build`
+  - Remark: `BuildKit` has been enforced also before by setting the environment variable `export DOCKER_BUILDKIT=1` in the hook script `secrets.rc`.
+
 ### Release 26.10 (G3v9)
 
 This is the first `G3v9` release. It brings the following changes.
