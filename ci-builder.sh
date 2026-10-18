@@ -162,7 +162,7 @@ build_single_image() {
     local blend="${2?Expected blend}"
     local option_nocache="${3}"
     local -i exit_code=0
-    local option_build_pull="${4}"
+    local option_pull="${4}"
 
     if [[ "${command}" == "pull" ]]; then
 
@@ -184,7 +184,7 @@ build_single_image() {
         echo -e "${_log_mark} Building image '${_builder_project}:${blend}'"
 
         ### call builder script
-        ./"${_builder_script}" "${blend}" "${command}" "${option_nocache}" "${option_build_pull}"
+        ./"${_builder_script}" "${blend}" "${command}" "${option_nocache}" "${option_pull}"
         exit_code=$?
         if [[ ${exit_code} -ne 0 ]]; then die "Script '${_builder_script}' failed with code ${exit_code}." ${exit_code}; fi
 
