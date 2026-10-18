@@ -41,7 +41,7 @@ This is the first `G3v9` release. It brings the following changes.
   - You can still build the `Debian 11` images because I've pinned the `Debian Snapshot Version` in the `Dockerfile.xfce.11` (see the build argument `DEBIAN_SNAPSHOT=20260824T000000Z`).
     - However, keep in mind that
       - Support for building the `Debian 11` images will be removed from this project in the near future.
-      - The `debian.org` says: "Starting in September, Debian will not provide further security updates for Debian 11. A subset of "bullseye" packages will be supported by external parties."
+      - The `debian.org` says: "Starting in September 2026, Debian will not provide further security updates for Debian 11. A subset of "bullseye" packages will be supported by external parties."
 
 ### Release 26.08.2
 
