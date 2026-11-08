@@ -6,6 +6,20 @@
 
 ***
 
+### Release 26.11
+
+This is a maintenance release, bringing just a minor non-critical update.
+
+Updated files:
+
+- Hook script `release_of` can now report the available latest versions of the `brave-browser`, `chromium-browser` and `firefox-esr` installation packages.
+  - Remark: The reported data is not actually required during the building process and the script is not really called, but it can be used manually for information. Available parameters:
+    - `brave`
+    - `chromium` (or `chromium-trixie`)
+    - `chromium-bookworm`
+    - `firefox` (or `firefox-trixie`)
+    - `firefox-bookworm`
+
 ### Release 26.10.1
 
 This is a maintenance release, bringing

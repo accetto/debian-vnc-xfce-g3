@@ -9,12 +9,72 @@ main() {
     ### Warning! The log name must be synchronized with the 'builder.sh' script!
     local curl_output="scrap_release_of.log"
 
-    # ensure the log file exists
-    touch "${curl_output}"
-
     case "${subject}" in
 
-        ### currently unused
+        brave )
+            if [[ -n "${RELEASE_OF_OVERRIDE_brave}" ]] ; then
+                result="${RELEASE_OF_OVERRIDE_brave}"
+                echo "Using forced RELEASE_OF_OVERRIDE_brave=${result}" >&2
+            else
+                response=$(curl -sLN https://api.github.com/repos/brave/brave-browser/releases/latest)
+
+                if [[ -n "${response}" ]] ; then
+                    result=$( echo "${response}" | grep -m1 "tag_name" | grep -Po '[0-9.]+' )
+                fi
+            fi
+            ;;
+
+        chromium|chromium-trixie )
+            if [[ -n "${RELEASE_OF_OVERRIDE_chromium_trixie}" ]] ; then
+                result="${RELEASE_OF_OVERRIDE_chromium_trixie}"
+                echo "Using forced RELEASE_OF_OVERRIDE_chromium_trixie=${result}" >&2
+            else
+                response=$(curl -sLN 	https://packages.debian.org/search?keywords=chromium&searchon=names&suite=trixie&section=main)
+
+                if [[ -n "${response}" ]] ; then
+                    result=$( echo "${response}" | grep -P -m1 -A10 '(?<=class="trixie")' | grep -Po -m1 '(?<=\<br\>)[0-9a-z.-]+~[0-9a-z]+' )
+                fi
+            fi
+            ;;
+
+        chromium-bookworm )
+            if [[ -n "${RELEASE_OF_OVERRIDE_chromium_bookworm}" ]] ; then
+                result="${RELEASE_OF_OVERRIDE_chromium_bookworm}"
+                echo "Using forced RELEASE_OF_OVERRIDE_chromium_bookworm=${result}" >&2
+            else
+                response=$(curl -sLN 	https://packages.debian.org/search?keywords=chromium&searchon=names&suite=bookworm&section=main)
+
+                if [[ -n "${response}" ]] ; then
+                    result=$( echo "${response}" | grep -P -m1 -A10 '(?<=class="bookworm")' | grep -Po -m1 '(?<=\<br\>)[0-9a-z.-]+~[0-9a-z]+' )
+                fi
+            fi
+            ;;
+
+        firefox|firefox-trixie )
+            if [[ -n "${RELEASE_OF_OVERRIDE_firefox_trixie}" ]] ; then
+                result="${RELEASE_OF_OVERRIDE_firefox_trixie}"
+                echo "Using forced RELEASE_OF_OVERRIDE_firefox_trixie=${result}" >&2
+            else
+                response=$(curl -sLN 	https://packages.debian.org/search?keywords=firefox-esr&searchon=names&suite=trixie&section=main)
+
+                if [[ -n "${response}" ]] ; then
+                    result=$( echo "${response}" | grep -P -m1 -A10 '(?<=class="trixie")' | grep -Po -m1 '(?<=\<br\>)[0-9a-z.-]+~[0-9a-z]+' )
+                fi
+            fi
+            ;;
+
+        firefox-bookworm )
+            if [[ -n "${RELEASE_OF_OVERRIDE_firefox_bookworm}" ]] ; then
+                result="${RELEASE_OF_OVERRIDE_firefox_bookworm}"
+                echo "Using forced RELEASE_OF_OVERRIDE_firefox_bookworm=${result}" >&2
+            else
+                response=$(curl -sLN https://packages.debian.org/search?keywords=firefox-esr&searchon=names&suite=bookworm&section=main)
+
+                if [[ -n "${response}" ]] ; then
+                    result=$( echo "${response}" | grep -P -m1 -A10 '(?<=class="bookworm")' | grep -Po -m1 '(?<=\<br\>)[0-9a-z.-]+~[0-9a-z]+' )
+                fi
+            fi
+            ;;
         
         * )
             echo "Exiting '${0}' with code '1' because of unknown subject '${1}'"
